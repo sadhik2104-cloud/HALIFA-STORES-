@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HALIFA STORES | Home Appliance Service</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f4f7f6;color:#333}
+header{background:#0056b3;color:#fff;padding:25px 20px;text-align:center;position:relative}
+header h1{font-size:32px;margin-bottom:8px}
+header p{font-size:15px;margin-top:4px}
+.phone{margin-top:12px;font-size:18px;font-weight:bold}
+.lang-toggle{position:absolute;top:12px;right:12px;display:flex;border:1px solid #fff;border-radius:6px;overflow:hidden}
+.lang-toggle button{background:transparent;color:#fff;border:none;padding:6px 12px;cursor:pointer;font-weight:bold}
+.lang-toggle button.active{background:#fff;color:#0056b3}
+.container{max-width:900px;margin:20px auto;padding:20px}
+.contact-buttons{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+.contact-buttons a{text-decoration:none;color:#fff;padding:12px 18px;border-radius:6px;font-weight:bold}
+.call-btn{background:#007bff}
+.whatsapp-btn{background:#25D366}
+.services{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;margin-bottom:30px}
+.service-card{background:#fff;padding:20px;border-radius:8px;width:250px;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,.1)}
+.service-card h3{color:#0056b3;margin-bottom:10px}
+.booking-form{background:#fff;padding:25px;border-radius:8px;box-shadow:0 4px 6px rgba(0,0,0,.1)}
+.booking-form h2{text-align:center;margin-bottom:15px;color:#0056b3}
+.form-group{margin-bottom:15px}
+.form-group label{display:block;margin-bottom:5px;font-weight:bold}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px;border:1px solid #ccc;border-radius:5px;font-size:15px}
+.hidden{display:none}
+.photo-box{border:2px dashed #0056b3;border-radius:8px;padding:12px;text-align:center}
+.photo-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.photo-actions button{border:none;border-radius:5px;padding:9px 14px;cursor:pointer;font-weight:bold;color:#fff}
+.btn-select{background:#0056b3}
+.sr-file{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+.lbl-btn{display:inline-block;border-radius:5px;padding:9px 14px;cursor:pointer;font-weight:bold;color:#fff}
+.btn-deselect{background:#dc3545}
+.previews{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;justify-content:center}
+.thumb{position:relative;width:90px;height:90px;border-radius:6px;overflow:hidden;border:2px solid #ddd;cursor:pointer}
+.thumb.selected{border-color:#28a745}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb .tick{position:absolute;top:3px;right:3px;background:#28a745;color:#fff;border-radius:50%;width:22px;height:22px;font-size:14px;line-height:22px;text-align:center}
+.thumb:not(.selected) .tick{background:#999}
+.thumb:not(.selected) img{opacity:.45}
+.hint{font-size:13px;color:#666;margin-top:8px}
+.btn-submit{background:#28a745;color:#fff;border:none;padding:12px;width:100%;font-size:16px;border-radius:5px;cursor:pointer}
+.btn-submit:hover{background:#218838}
+footer{text-align:center;padding:20px;background:#333;color:#fff;margin-top:30px}
+footer p{margin:5px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="lang-toggle">
+    <button id="btn-ta" class="active" onclick="setLang('ta')">தமிழ்</button>
+    <button id="btn-en" onclick="setLang('en')">English</button>
+  </div>
+  <h1>HALIFA STORES</h1>
+  <p data-i18n="tagline"></p>
+  <p data-i18n="items"></p>
+  <div class="phone">📞 8610786455 &nbsp;|&nbsp; 8531983782</div>
+</header>
+
+<div class="container">
+
+  <div class="contact-buttons">
+    <a class="call-btn" href="tel:+918610786455">📞 <span data-i18n="call"></span> 8610786455</a>
+    <a class="call-btn" href="tel:+918531983782">📞 <span data-i18n="call"></span> 8531983782</a>
+    <a class="whatsapp-btn" target="_blank" data-wa="918610786455">💬 WhatsApp 8610786455</a>
+    <a class="whatsapp-btn" target="_blank" data-wa="918531983782">💬 WhatsApp 8531983782</a>
+  </div>
+
+  <h2 style="text-align:center;margin-bottom:20px" data-i18n="services"></h2>
+  <div class="services" id="services"></div>
+
+  <div class="booking-form">
+    <h2 data-i18n="book"></h2>
+    <form id="bookForm">
+
+      <div class="form-group">
+        <label data-i18n="name"></label>
+        <input type="text" id="name" required>
+      </div>
+
+      <div class="form-group">
+        <label data-i18n="phone"></label>
+        <input type="tel" id="phone" required>
+      </div>
+
+      <div class="form-group">
+        <label data-i18n="which"></label>
+        <select id="appliance"></select>
+      </div>
+
+      <div class="form-group hidden" id="otherApplianceBox">
+        <label data-i18n="otherName"></label>
+        <input type="text" id="otherAppliance" data-ph="otherPh">
+      </div>
+
+      <div class="form-group" id="brandBox">
+        <label data-i18n="brand"></label>
+        <select id="brand"></select>
+      </div>
+
+      <div class="form-group hidden" id="otherBrandBox">
+        <label data-i18n="otherBrand"></label>
+        <input type="text" id="otherBrand" data-ph="otherBrandPh">
+      </div>
+
+      <div class="form-group">
+        <label data-i18n="photo"></label>
+        <div class="photo-box">
+          <input type="file" id="photos" accept="image/*" multiple class="sr-file">
+          <div class="photo-actions">
+            <label for="photos" class="btn-select lbl-btn" data-i18n="addPhoto"></label>
+            <button type="button" class="btn-select" onclick="selectAll(true)" data-i18n="selAll"></button>
+            <button type="button" class="btn-deselect" onclick="selectAll(false)" data-i18n="deselAll"></button>
+          </div>
+          <div class="previews" id="previews"></div>
+          <p class="hint" data-i18n="photoHint"></p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label data-i18n="address"></label>
+        <textarea id="address" rows="3" required data-ph="addressPh"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label data-i18n="sendTo"></label>
+        <select id="sendTo">
+          <option value="918610786455">8610786455</option>
+          <option value="918531983782">8531983782</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-submit" data-i18n="submit"></button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <p><strong>HALIFA STORES</strong></p>
+  <p data-i18n="tagline"></p>
+  <p>📞 8610786455 | 8531983782</p>
+  <p>© 2026 HALIFA STORES. All Rights Reserved.</p>
+</footer>
+
+<script>
+// Add / edit appliances and brands here. "ta" = Tamil name, "en" = English name.
+var APPLIANCES = [
+  {id:"gas",  icon:"🔥", ta:"கேஸ் ஸ்டவ்",       en:"Gas Stove",       brands:["Prestige","Butterfly","Preethi","Sunflame","Elica","Pigeon","Glen"]},
+  {id:"mixie",icon:"🥣", ta:"மிக்ஸி",            en:"Mixie",           brands:["Preethi","Butterfly","Sumeet","Bajaj","Philips","Panasonic","Maharaja Whiteline"]},
+  {id:"cooker",icon:"🍳",ta:"குக்கர்",           en:"Cooker",          brands:["Prestige","Hawkins","Butterfly","Pigeon","TTK"]},
+  {id:"ind",  icon:"⚡", ta:"இண்டக்ஷன் ஸ்டவ்",  en:"Induction Stove", brands:["Prestige","Philips","Pigeon","Bajaj","Butterfly"]},
+  {id:"fan",  icon:"💨", ta:"ஃபேன்",             en:"Fan",             brands:["Crompton","Usha","Havells","Orient","Bajaj","Atomberg"]},
+  {id:"heater",icon:"🔥",ta:"ஹீட்டர்",           en:"Heater",          brands:["Racold","Bajaj","Crompton","Havells","AO Smith","V-Guard"]},
+  {id:"iron", icon:"👕", ta:"அயன் பாக்ஸ்",      en:"Iron Box",        brands:["Philips","Bajaj","Usha","Morphy Richards","Havells"]},
+  {id:"other",icon:"🔧", ta:"மற்றவை",            en:"Other",           brands:[]}
+];
+
+var T = {
+ ta:{tagline:"வீட்டு உபயோகப் பொருட்கள் விற்பனை & சர்வீஸ்",
+     items:"கேஸ் ஸ்டவ் • மிக்ஸி • குக்கர் • அயன் பாக்ஸ் • இண்டக்ஷன் ஸ்டவ் • ஃபேன் • ஹீட்டர்",
+     call:"அழைக்க", services:"எங்களின் சேவைகள்", book:"சர்வீஸ் புக் செய்யுங்கள்",
+     name:"உங்கள் பெயர்:", phone:"போன் நம்பர்:", which:"எந்த சாதனம் சர்வீஸ் செய்ய வேண்டும்?",
+     otherName:"சாதனத்தின் பெயரை டைப் செய்யுங்கள்:", otherPh:"எ.கா: வெட் கிரைண்டர்",
+     brand:"கம்பெனி / பிராண்ட்:", otherBrand:"கம்பெனி பெயரை டைப் செய்யுங்கள்:", otherBrandPh:"கம்பெனி பெயர்",
+     brandSel:"-- கம்பெனி தேர்வு செய்யுங்கள் --", brandOther:"மற்ற கம்பெனி", brandUnknown:"தெரியாது",
+     photo:"போட்டோ (விருப்பம்):", addPhoto:"📷 போட்டோ சேர்", selAll:"அனைத்தும் தேர்வு", deselAll:"அனைத்தும் நீக்கு",
+     photoHint:"போட்டோவை தொட்டால் தேர்வு / நீக்கம் ஆகும்.",
+     address:"முகவரி (Address):", addressPh:"உங்கள் முகவரி", sendTo:"எந்த நம்பருக்கு WhatsApp அனுப்ப வேண்டும்?",
+     submit:"இப்போதே சர்வீஸ் புக் செய்", svc:"ரிப்பேர் & சர்வீஸ்", svcOther:"மற்ற வீட்டு உபயோகப் பொருட்கள் ரிப்பேர்",
+     waHello:"வணக்கம் HALIFA STORES, எனக்கு சர்வீஸ் வேண்டும்.",
+     wName:"பெயர்", wPhone:"போன்", wItem:"சாதனம்", wBrand:"கம்பெனி", wAddr:"முகவரி", wPhotos:"போட்டோ",
+     wPhotosNote:"போட்டோ இருக்கிறது - இந்த சாட்டில் அனுப்புகிறேன்"},
+ en:{tagline:"Home Appliance Sales & Service",
+     items:"Gas Stove • Mixie • Cooker • Iron Box • Induction Stove • Fan • Heater",
+     call:"Call", services:"Our Services", book:"Book a Service",
+     name:"Your Name:", phone:"Phone Number:", which:"Which appliance needs service?",
+     otherName:"Type the appliance name:", otherPh:"e.g. Wet Grinder",
+     brand:"Company / Brand:", otherBrand:"Type the company name:", otherBrandPh:"Company name",
+     brandSel:"-- Select brand --", brandOther:"Other brand", brandUnknown:"Not sure",
+     photo:"Photo (optional):", addPhoto:"📷 Add Photo", selAll:"Select All", deselAll:"Deselect All",
+     photoHint:"Tap a photo to select / deselect it.",
+     address:"Address:", addressPh:"Your address", sendTo:"Send WhatsApp to which number?",
+     submit:"Book Service Now", svc:"repair & service", svcOther:"Other home appliance repair services",
+     waHello:"Hello HALIFA STORES, I need appliance service.",
+     wName:"Name", wPhone:"Phone", wItem:"Appliance", wBrand:"Brand", wAddr:"Address", wPhotos:"Photos",
+     wPhotosNote:"I have photos - will send them in this chat"}
+};
+
+var lang = "ta";
+var files = [];
+
+function tr(k){ return T[lang][k]; }
+function aName(a){ return a[lang]; }
+
+function setLang(l){
+  lang = l;
+  document.documentElement.lang = l;
+  document.getElementById("btn-ta").classList.toggle("active", l==="ta");
+  document.getElementById("btn-en").classList.toggle("active", l==="en");
+  render();
+}
+
+function render(){
+  document.querySelectorAll("[data-i18n]").forEach(function(e){ e.textContent = tr(e.dataset.i18n); });
+  document.querySelectorAll("[data-ph]").forEach(function(e){ e.placeholder = tr(e.dataset.ph); });
+
+  document.getElementById("services").innerHTML = APPLIANCES.map(function(a){
+    var d = a.id==="other" ? tr("svcOther") : aName(a)+" "+tr("svc");
+    var h = a.id==="other" ? "🔧 "+aName(a) : a.icon+" "+aName(a);
+    return '<div class="service-card"><h3>'+h+'</h3><p>'+d+'</p></div>';
+  }).join("");
+
+  var sel = document.getElementById("appliance"), cur = sel.value || "gas";
+  sel.innerHTML = APPLIANCES.map(function(a){ return '<option value="'+a.id+'">'+aName(a)+'</option>'; }).join("");
+  sel.value = cur;
+  renderBrands(true);
+
+  document.querySelectorAll("[data-wa]").forEach(function(a){
+    a.href = "https://wa.me/"+a.dataset.wa+"?text="+encodeURIComponent(tr("waHello"));
+  });
+}
+
+function currentAppliance(){
+  var id = document.getElementById("appliance").value;
+  return APPLIANCES.find(function(a){ return a.id===id; });
+}
+
+function renderBrands(keep){
+  var a = currentAppliance();
+  var isOther = a.id==="other";
+  document.getElementById("otherApplianceBox").classList.toggle("hidden", !isOther);
+  var bs = document.getElementById("brand"), prev = keep ? bs.value : "";
+  var opts = '<option value="">'+tr("brandSel")+'</option>';
+  a.brands.forEach(function(b){ opts += '<option value="'+b+'">'+b+'</option>'; });
+  opts += '<option value="__other">'+tr("brandOther")+'</option>';
+  opts += '<option value="__unknown">'+tr("brandUnknown")+'</option>';
+  bs.innerHTML = opts;
+  if(prev) bs.value = prev;
+  document.getElementById("otherBrandBox").classList.toggle("hidden", bs.value!=="__other");
+}
+
+document.getElementById("appliance").addEventListener("change", function(){ renderBrands(false); });
+document.getElementById("brand").addEventListener("change", function(){
+  document.getElementById("otherBrandBox").classList.toggle("hidden", this.value!=="__other");
+});
+
+document.getElementById("photos").addEventListener("change", function(){
+  Array.prototype.forEach.call(this.files, function(f){
+    files.push({file:f, url:URL.createObjectURL(f), selected:true});
+  });
+  this.value = "";
+  drawPreviews();
+});
+
+function drawPreviews(){
+  var box = document.getElementById("previews");
+  box.innerHTML = "";
+  files.forEach(function(p,i){
+    var d = document.createElement("div");
+    d.className = "thumb"+(p.selected?" selected":"");
+    d.innerHTML = '<img src="'+p.url+'" alt=""><span class="tick">'+(p.selected?"✓":"")+'</span>';
+    d.onclick = function(){ p.selected = !p.selected; drawPreviews(); };
+    box.appendChild(d);
+  });
+}
+function selectAll(v){ files.forEach(function(p){ p.selected = v; }); drawPreviews(); }
+
+document.getElementById("bookForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var a = currentAppliance();
+  var item = a.id==="other" ? (document.getElementById("otherAppliance").value.trim() || aName(a)) : aName(a);
+  var b = document.getElementById("brand").value, brand = "";
+  if(b==="__other") brand = document.getElementById("otherBrand").value.trim();
+  else if(b==="__unknown") brand = tr("brandUnknown");
+  else brand = b;
+  var n = files.filter(function(p){ return p.selected; }).length;
+
+  var lines = [tr("waHello"), "",
+    tr("wName")+": "+document.getElementById("name").value.trim(),
+    tr("wPhone")+": "+document.getElementById("phone").value.trim(),
+    tr("wItem")+": "+item];
+  if(brand) lines.push(tr("wBrand")+": "+brand);
+  lines.push(tr("wAddr")+": "+document.getElementById("address").value.trim());
+  if(n) lines.push(tr("wPhotos")+": "+n+" - "+tr("wPhotosNote"));
+
+  var num = document.getElementById("sendTo").value;
+  window.open("https://wa.me/"+num+"?text="+encodeURIComponent(lines.join("\n")), "_blank");
+});
+
+render();
+</script>
+</body>
+</html>
