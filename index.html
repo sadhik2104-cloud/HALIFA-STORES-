@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>HALIFA STORES | Home Appliance Service</title>
-<link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#3b1a94">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -531,6 +530,53 @@ if("serviceWorker" in navigator){window.addEventListener("load",function(){navig
 render();
 var h=location.hash.replace("#","");
 if(["home","services","book","pay","shop"].indexOf(h)>-1) go(h);
+</script>
+<script>
+(function(){
+var old=document.querySelector('link[rel="manifest"]');
+if(old) old.remove();
+
+function draw(S){
+  var c=document.createElement('canvas');c.width=c.height=S;
+  var x=c.getContext('2d');x.scale(S/1024,S/1024);
+  var g=x.createRadialGradient(512,512,0,512,512,720);
+  g.addColorStop(0,'#0e3a6b');g.addColorStop(1,'#06142a');
+  x.fillStyle=g;x.fillRect(0,0,1024,1024);
+  x.fillStyle='#06b6d4';x.beginPath();
+  var n=16,Ro=335,Ri=300,first=true;
+  for(var i=0;i<n;i++){
+    var b=2*Math.PI*i/n,w=Math.PI/n;
+    [[-0.5,Ri],[-0.3,Ro],[0.3,Ro],[0.5,Ri]].forEach(function(p){
+      var px=512+p[1]*Math.cos(b+p[0]*w),py=512+p[1]*Math.sin(b+p[0]*w);
+      if(first){x.moveTo(px,py);first=false}else x.lineTo(px,py);
+    });
+  }
+  x.closePath();x.fill();
+  function dot(cx,cy,r,col){x.fillStyle=col;x.beginPath();x.arc(cx,cy,r,0,7);x.fill()}
+  function ln(x1,y1,x2,y2,w,col){x.strokeStyle=col;x.lineWidth=w;x.lineCap='butt';x.beginPath();x.moveTo(x1,y1);x.lineTo(x2,y2);x.stroke()}
+  dot(512,512,300,'#06b6d4');dot(512,512,268,'#ffffff');
+  ln(417,310,607,500,38,'#ff6b1a');
+  dot(417,310,46,'#ff6b1a');dot(391,284,21,'#ffffff');dot(607,500,32,'#ff6b1a');
+  ln(607,310,417,500,20,'#647087');
+  ln(417,500,472,445,44,'#ff6b1a');
+  dot(607,310,14,'#647087');
+  x.fillStyle='#0b1f3a';x.font='bold 215px Arial, Helvetica, sans-serif';
+  x.textAlign='center';x.textBaseline='middle';x.fillText('HS',512,630);
+  return c.toDataURL('image/png');
+}
+
+var i192=draw(192),i512=draw(512);
+function link(rel,href){var l=document.createElement('link');l.rel=rel;l.href=href;document.head.appendChild(l);return l}
+link('icon',i192);
+link('apple-touch-icon',i192);
+var base=location.origin+location.pathname.replace(/[^\/]*$/,'');
+var m={name:'HALIFA STORES',short_name:'HALIFA',start_url:base,scope:base,display:'standalone',
+ background_color:'#0b1f3a',theme_color:'#0b1f3a',
+ icons:[{src:i192,sizes:'192x192',type:'image/png',purpose:'any'},
+        {src:i512,sizes:'512x512',type:'image/png',purpose:'any'},
+        {src:i512,sizes:'512x512',type:'image/png',purpose:'maskable'}]};
+link('manifest',URL.createObjectURL(new Blob([JSON.stringify(m)],{type:'application/manifest+json'})));
+})();
 </script>
 </body>
 </html>
