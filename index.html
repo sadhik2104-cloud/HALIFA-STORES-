@@ -164,7 +164,7 @@ footer p{margin:5px}
 
       <div class="form-group">
         <label data-i18n="address"></label>
-        <textarea id="address" rows="3" required data-ph="addressPh"></textarea>
+        <textarea id="address" rows="3"  data-ph="addressPh"></textarea>
       </div>
 
       <div class="form-group">
@@ -419,7 +419,8 @@ document.getElementById("bookForm").addEventListener("submit", function(e){
 });
 
 var deferredPrompt = null;
-var installBtn = document.getElementById("installBtn");
+var ad = document.getElementById("address").value.trim();
+if(ad) lines.push(tr("wAddr")+": "+ad);
 if(window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone) installBtn.classList.add("hidden");
 window.addEventListener("beforeinstallprompt", function(e){ e.preventDefault(); deferredPrompt = e; });
 window.addEventListener("appinstalled", function(){ installBtn.classList.add("hidden"); });
