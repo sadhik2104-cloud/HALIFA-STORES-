@@ -278,4 +278,259 @@ var PROBS = {
  mixie:[["மோட்டார் ஓடவில்லை","Motor not running"],["ஜார் லீக் ஆகிறது","Jar leaking"],["பிளேடு சுற்றவில்லை","Blade not rotating"],["அதிக சத்தம்","Loud noise"],["ஸ்விட்ச் பிரச்சனை","Switch problem"]],
  cooker:[["கேஸ்கட் (ரப்பர்) தளர்வு","Gasket (rubber) loose"],["ஸ்டீம் லீக் ஆகிறது","Steam leaking"],["விசில் பிரச்சனை","Whistle problem"],["கைப்பிடி உடைந்தது","Handle broken"],["மூடி இறுக்கமாக உள்ளது","Lid stuck"]],
  ind:[["ஆன் ஆகவில்லை","Not switching on"],["சூடாகவில்லை","Not heating"],["எரர் கோடு காட்டுகிறது","Error code showing"],["ஃபேன் சத்தம்","Fan noise"],["டச் வேலை செய்யவில்லை","Touch not working"]],
- fan:[["ஓடவில்லை","Not running"],["மெதுவாக ஓடுகிறது","Running slow"],["சத்தம் வருகிறது","Making noise"],["ரெகுலேட்டர் பிரச்சனை","Regulator problem"],["ஆடுகிறது","Wob
+ fan:[["ஓடவில்லை","Not running"],["மெதுவாக ஓடுகிறது","Running slow"],["சத்தம் வருகிறது","Making noise"],["ரெகுலேட்டர் பிரச்சனை","Regulator problem"],["ஆடுகிறது","Wobbling"]],
+ heater:[["சூடாகவில்லை","Not heating"],["தண்ணீர் கசிவு","Water leaking"],["தெர்மோஸ்டாட் பிரச்சனை","Thermostat problem"],["MCB ட்ரிப் ஆகிறது","Tripping"],["பவர் இல்லை","No power"]],
+ iron:[["சூடாகவில்லை","Not heating"],["வெப்பநிலை கட்டுப்படவில்லை","Temperature not controlling"],["ஸ்டீம் வரவில்லை","Steam not coming"],["வயர் பிரச்சனை","Cord problem"],["ஆன் ஆகவில்லை","Not switching on"]],
+ cyl:[["கேஸ் வாசனை / லீக்","Gas smell / leak"],["ரெகுலேட்டர் பிரச்சனை","Regulator problem"],["டியூப் / பைப் மாற்றம்","Tube / pipe change"],["சிலிண்டர் இணைப்பு பிரச்சனை","Cylinder connection problem"]],
+ other:[]
+};
+var T = {
+ ta:{install:"📲 ஆப்பாக Install செய்",installHelp:"Chrome-ல் மேலே வலது ⋮ மெனு தொட்டு, 'Install app' அல்லது 'Add to Home screen' தேர்வு செய்யுங்கள்.",shop:"எங்கள் கடை இருக்கும் இடம்",mapOpen:"📍 Google Map-ல் திற",mapDir:"🚗 வழி காட்டு",slogan:"உங்களின் நம்பகமான வீட்டு உபயோகப் பொருட்கள் சர்வீஸ் பார்ட்னர்",tagline:"வீட்டு உபயோகப் பொருட்கள் விற்பனை & சர்வீஸ்",
+  items:"கேஸ் ஸ்டவ் • மிக்ஸி • குக்கர் • அயன் பாக்ஸ் • இண்டக்ஷன் ஸ்டவ் • ஃபேன் • ஹீட்டர்",
+  call:"அழைக்க",services:"எங்களின் சேவைகள்",tapHint:"சேவையைத் தொட்டால் நேராக புக்கிங் திறக்கும்.",book:"சர்வீஸ் புக் செய்யுங்கள்",
+  nHome:"முகப்பு",nServ:"சேவைகள்",nBook:"புக்கிங்",nPay:"பணம்",nShop:"கடை",
+  name:"உங்கள் பெயர்:",phone:"போன் நம்பர்:",which:"எந்த சாதனம் சர்வீஸ் செய்ய வேண்டும்?",
+  otherName:"சாதனத்தின் பெயரை டைப் செய்யுங்கள்:",otherPh:"எ.கா: வெட் கிரைண்டர்",
+  brand:"கம்பெனி / பிராண்ட்:",otherBrand:"கம்பெனி பெயரை டைப் செய்யுங்கள்:",otherBrandPh:"கம்பெனி பெயர்",
+  brandSel:"-- கம்பெனி தேர்வு செய்யுங்கள் --",brandOther:"மற்ற கம்பெனி",brandUnknown:"தெரியாது",
+  photo:"போட்டோ (விருப்பம்):",addPhoto:"📷 போட்டோ சேர்",selAll:"அனைத்தும் தேர்வு",deselAll:"அனைத்தும் நீக்கு",
+  photoHint:"போட்டோவை தொட்டால் தேர்வு / நீக்கம் ஆகும்.",
+  problem:"என்ன பிரச்சனை? (தேர்வு செய்யுங்கள்):",problemText:"பிரச்சனையை விளக்கி எழுதுங்கள் (விருப்பம்):",problemPh:"எ.கா: நேற்றிலிருந்து ஆன் ஆகவில்லை, சத்தம் வருகிறது",wProblem:"பிரச்சனை",
+  loc:"இருப்பிடம் (விருப்பம்):",locBtn:"📍 என் இருப்பிடத்தை சேர்",locClear:"நீக்கு",locHint:"தொட்டால் உங்கள் Google Map இருப்பிடம் WhatsApp செய்தியில் சேரும்.",locWait:"இருப்பிடம் எடுக்கிறது...",locOk:"இருப்பிடம் சேர்ந்தது.",locView:"Map-ல் பார்க்க",locErr:"இருப்பிடம் கிடைக்கவில்லை. Phone-ல் Location ON செய்து, அனுமதி கொடுங்கள்.",locNo:"இந்த browser-ல் இருப்பிடம் வேலை செய்யாது.",wLoc:"இருப்பிடம் (Google Map)",
+  address:"முகவரி (Address):",addressPh:"உங்கள் முகவரி",sendTo:"எந்த நம்பருக்கு WhatsApp அனுப்ப வேண்டும்?",
+  submit:"இப்போதே சர்வீஸ் புக் செய்",waHello:"வணக்கம் HALIFA STORES, எனக்கு சர்வீஸ் வேண்டும்.",
+  wName:"பெயர்",wPhone:"போன்",wItem:"சாதனம்",wBrand:"கம்பெனி",wAddr:"முகவரி",wPhotos:"போட்டோ",wPay:"பணம் செலுத்தும் முறை",
+  wPhotosNote:"போட்டோ இருக்கிறது - இந்த சாட்டில் அனுப்புகிறேன்",
+  payTitle:"பணம் செலுத்துங்கள்",payPref:"பணம் செலுத்தும் முறை:",mUpi:"UPI / QR",mCash:"பணம் (Cash)",mCard:"கார்டு",
+  amt:"தொகை (₹) - விருப்பம்:",scan:"GPay / PhonePe / Paytm மூலம் QR ஸ்கேன் செய்யுங்கள்.",copy:"📋 UPI ID காப்பி",copied:"✅ காப்பி ஆனது",payApp:"📱 UPI ஆப்பில் செலுத்து",
+  cashNote:"சர்வீஸ் முடிந்ததும் டெக்னீஷியனிடம் அல்லது கடையில் பணமாக செலுத்தலாம்.",cardNote:"கடையில் கார்டு மூலம் செலுத்தலாம். (கடையில் மட்டும்)",
+  pUpiOpt:"UPI / QR",pCashOpt:"Cash - சர்வீஸ் முடிந்ததும்",pCardOpt:"கார்டு (கடையில்)"},
+ en:{install:"📲 Install as App",installHelp:"In Chrome, tap the ⋮ menu at the top right, then choose 'Install app' or 'Add to Home screen'.",shop:"Our Shop Location",mapOpen:"📍 Open in Google Maps",mapDir:"🚗 Get Directions",slogan:"Your Trusted Home Appliance Service Partner",tagline:"Home Appliance Sales & Service",
+  items:"Gas Stove • Mixie • Cooker • Iron Box • Induction Stove • Fan • Heater",
+  call:"Call",services:"Our Services",tapHint:"Tap a service to open the booking form.",book:"Book a Service",
+  nHome:"Home",nServ:"Services",nBook:"Book",nPay:"Pay",nShop:"Shop",
+  name:"Your Name:",phone:"Phone Number:",which:"Which appliance needs service?",
+  otherName:"Type the appliance name:",otherPh:"e.g. Wet Grinder",
+  brand:"Company / Brand:",otherBrand:"Type the company name:",otherBrandPh:"Company name",
+  brandSel:"-- Select brand --",brandOther:"Other brand",brandUnknown:"Not sure",
+  photo:"Photo (optional):",addPhoto:"📷 Add Photo",selAll:"Select All",deselAll:"Deselect All",
+  photoHint:"Tap a photo to select / deselect it.",
+  problem:"What is the problem? (select):",problemText:"Describe the problem (optional):",problemPh:"e.g. Not switching on since yesterday, making noise",wProblem:"Problem",
+  loc:"Location (optional):",locBtn:"📍 Add my location",locClear:"Remove",locHint:"Tap to add your Google Maps location to the WhatsApp message.",locWait:"Getting location...",locOk:"Location added.",locView:"View on map",locErr:"Could not get location. Turn on Location on your phone and allow access.",locNo:"Location is not supported in this browser.",wLoc:"Location (Google Maps)",
+  address:"Address:",addressPh:"Your address",sendTo:"Send WhatsApp to which number?",
+  submit:"Book Service Now",waHello:"Hello HALIFA STORES, I need appliance service.",
+  wName:"Name",wPhone:"Phone",wItem:"Appliance",wBrand:"Brand",wAddr:"Address",wPhotos:"Photos",wPay:"Payment",
+  wPhotosNote:"I have photos - will send them in this chat",
+  payTitle:"Make a Payment",payPref:"Payment method:",mUpi:"UPI / QR",mCash:"Cash",mCard:"Card",
+  amt:"Amount (₹) - optional:",scan:"Scan with GPay / PhonePe / Paytm.",copy:"📋 Copy UPI ID",copied:"✅ Copied",payApp:"📱 Pay in UPI app",
+  cashNote:"Pay in cash to the technician after the service, or at the shop.",cardNote:"Card payment is available at the shop only.",
+  pUpiOpt:"UPI / QR",pCashOpt:"Cash - after service",pCardOpt:"Card (at shop)"}
+};
+
+T.en.langLbl="Language"; T.ta.langLbl="மொழி";
+Object.assign(T.en,{st1:"1. Details",st2:"2. Send",next:"Next",back:"Back"});Object.assign(T.ta,{st1:"1. விவரங்கள்",st2:"2. அனுப்பு",next:"அடுத்து",back:"பின்"});
+T.hi={st1:"1. विवरण",st2:"2. भेजें",next:"आगे",back:"पीछे",install:"📲 ऐप के रूप में इंस्टॉल करें",installHelp:"Chrome में ऊपर दाईं ओर ⋮ मेनू दबाएँ, फिर 'Install app' या 'Add to Home screen' चुनें।",shop:"हमारी दुकान का पता",mapOpen:"📍 Google Maps में खोलें",mapDir:"🚗 रास्ता देखें",slogan:"आपका भरोसेमंद घरेलू उपकरण सर्विस पार्टनर",tagline:"घरेलू उपकरण बिक्री और सर्विस",items:"गैस स्टोव • मिक्सी • कुकर • आयरन • इंडक्शन स्टोव • पंखा • हीटर",call:"कॉल करें",services:"हमारी सेवाएँ",tapHint:"किसी सेवा को दबाएँ, बुकिंग फ़ॉर्म खुल जाएगा।",book:"सर्विस बुक करें",nHome:"होम",nServ:"सेवाएँ",nBook:"बुकिंग",nPay:"भुगतान",nShop:"दुकान",langLbl:"भाषा",name:"आपका नाम:",phone:"फ़ोन नंबर:",which:"किस उपकरण की सर्विस चाहिए?",otherName:"उपकरण का नाम लिखें:",otherPh:"जैसे: वेट ग्राइंडर",brand:"कंपनी / ब्रांड:",otherBrand:"कंपनी का नाम लिखें:",otherBrandPh:"कंपनी का नाम",brandSel:"-- ब्रांड चुनें --",brandOther:"अन्य ब्रांड",brandUnknown:"पता नहीं",photo:"फ़ोटो (वैकल्पिक):",addPhoto:"📷 फ़ोटो जोड़ें",selAll:"सभी चुनें",deselAll:"सभी हटाएँ",photoHint:"फ़ोटो दबाने पर चुनी / हटाई जाएगी।",problem:"क्या समस्या है? (चुनें):",problemText:"समस्या लिखकर बताएँ (वैकल्पिक):",problemPh:"जैसे: कल से चालू नहीं हो रहा, आवाज़ आ रही है",wProblem:"समस्या",loc:"लोकेशन (वैकल्पिक):",locBtn:"📍 मेरी लोकेशन जोड़ें",locClear:"हटाएँ",locHint:"दबाने पर आपकी Google Maps लोकेशन WhatsApp संदेश में जुड़ जाएगी।",locWait:"लोकेशन ली जा रही है...",locOk:"लोकेशन जुड़ गई।",locView:"मैप में देखें",locErr:"लोकेशन नहीं मिली। फ़ोन में Location चालू करें और अनुमति दें।",locNo:"इस ब्राउज़र में लोकेशन काम नहीं करती।",wLoc:"लोकेशन (Google Maps)",address:"पता:",addressPh:"आपका पता",sendTo:"किस नंबर पर WhatsApp भेजना है?",submit:"अभी सर्विस बुक करें",waHello:"नमस्ते HALIFA STORES, मुझे उपकरण की सर्विस चाहिए।",wName:"नाम",wPhone:"फ़ोन",wItem:"उपकरण",wBrand:"ब्रांड",wAddr:"पता",wPhotos:"फ़ोटो",wPay:"भुगतान का तरीका",wPhotosNote:"मेरे पास फ़ोटो हैं - इसी चैट में भेजूँगा/भेजूँगी",payTitle:"भुगतान करें",payPref:"भुगतान का तरीका:",mUpi:"UPI / QR",mCash:"नकद",mCard:"कार्ड",amt:"राशि (₹) - वैकल्पिक:",scan:"GPay / PhonePe / Paytm से QR स्कैन करें।",copy:"📋 UPI ID कॉपी करें",copied:"✅ कॉपी हो गया",payApp:"📱 UPI ऐप में भुगतान करें",cashNote:"सर्विस के बाद टेक्नीशियन को या दुकान पर नकद दें।",cardNote:"कार्ड से भुगतान केवल दुकान पर उपलब्ध है।",pUpiOpt:"UPI / QR",pCashOpt:"नकद - सर्विस के बाद",pCardOpt:"कार्ड (दुकान पर)"};
+var HI_A={gas:"गैस स्टोव",mixie:"मिक्सर ग्राइंडर",cooker:"कुकर",ind:"इंडक्शन स्टोव",fan:"पंखा",heater:"वॉटर हीटर / गीज़र",iron:"आयरन (इस्त्री)",cyl:"गैस सिलेंडर सर्विस",other:"अन्य"};
+APPLIANCES.forEach(function(a){a.hi=HI_A[a.id]});
+["गैस स्टोव रिपेयर","मिक्सर ग्राइंडर रिपेयर","कुकर सर्विस","आयरन रिपेयर","इंडक्शन स्टोव रिपेयर","पंखा रिपेयर","वॉटर हीटर / गीज़र सर्विस","गैस सिलेंडर संबंधी सर्विस","सभी घरेलू उपकरणों की रिपेयर","स्पेयर पार्ट्स बदलना"].forEach(function(t,i){SERVICES[i].hi=t});
+var PROBS_HI={gas:["बर्नर नहीं जल रहा","लौ धीमी है","गैस की बदबू / लीक","नॉब जाम है","इग्नाइटर काम नहीं कर रहा"],mixie:["मोटर नहीं चल रही","जार लीक हो रहा है","ब्लेड नहीं घूम रहा","ज़्यादा आवाज़","स्विच की समस्या"],cooker:["गैस्केट (रबर) ढीला","भाप लीक हो रही है","सीटी की समस्या","हैंडल टूटा है","ढक्कन जाम है"],ind:["चालू नहीं हो रहा","गरम नहीं हो रहा","एरर कोड दिख रहा है","पंखे की आवाज़","टच काम नहीं कर रहा"],fan:["चल नहीं रहा","धीरे चल रहा है","आवाज़ आ रही है","रेगुलेटर की समस्या","हिल रहा है"],heater:["गरम नहीं हो रहा","पानी टपक रहा है","थर्मोस्टैट की समस्या","MCB ट्रिप हो रहा है","बिजली नहीं आ रही"],iron:["गरम नहीं हो रहा","तापमान नियंत्रित नहीं हो रहा","भाप नहीं आ रही","तार की समस्या","चालू नहीं हो रहा"],cyl:["गैस की बदबू / लीक","रेगुलेटर की समस्या","पाइप / ट्यूब बदलना","सिलेंडर कनेक्शन की समस्या"],other:[]};
+function pTxt(id,i){return lang==="hi"?PROBS_HI[id][i]:PROBS[id][i][lang==="ta"?0:1]}
+var lang="en", files=[], probSel={}, loc=null, payM="upi", qr=null;
+function tr(k){return T[lang][k]}
+function aName(a){return a[lang]}
+
+function step(n){
+  document.getElementById("s1").classList.toggle("hidden",n!==1);
+  document.getElementById("s2").classList.toggle("hidden",n!==2);
+  document.getElementById("st1").classList.toggle("on",n===1);
+  document.getElementById("st2").classList.toggle("on",n===2);
+  window.scrollTo({top:0});
+}
+function nextStep(){
+  var n=document.getElementById("name"),p=document.getElementById("phone");
+  if(!n.reportValidity()||!p.reportValidity()) return;
+  step(2);
+}
+function go(id){
+  if(id==="book"&&!document.getElementById("v-book").classList.contains("on")) step(1);
+  document.querySelectorAll(".view").forEach(function(v){v.classList.toggle("on",v.id==="v-"+id)});
+  document.querySelectorAll(".nav button").forEach(function(b){b.classList.toggle("on",b.dataset.go===id)});
+  window.scrollTo({top:0});
+  if(id==="pay") drawQR();
+  try{history.replaceState(null,"","#"+id)}catch(e){}
+}
+document.getElementById("nav").addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(b) go(b.dataset.go);
+});
+
+function toggleLang(){document.getElementById("langMenu").classList.toggle("hidden")}
+function setLang(l){
+  lang=l; document.documentElement.lang=l;
+  document.querySelectorAll("#langMenu button").forEach(function(b){b.classList.toggle("on",b.dataset.l===l)});
+  document.getElementById("langMenu").classList.add("hidden");
+  render();
+}
+document.getElementById("langMenu").addEventListener("click",function(e){var b=e.target.closest("button"); if(b) setLang(b.dataset.l)});
+document.addEventListener("click",function(e){if(!e.target.closest(".lang")) document.getElementById("langMenu").classList.add("hidden")});
+
+function render(){
+  document.querySelectorAll("[data-i18n]").forEach(function(e){e.textContent=tr(e.dataset.i18n)});
+  document.querySelectorAll("[data-ph]").forEach(function(e){e.placeholder=tr(e.dataset.ph)});
+  document.getElementById("services").innerHTML=SERVICES.map(function(x,i){
+    return '<div class="service-card" onclick="pick('+i+')"><h3>'+x.i+' '+x[lang]+'</h3></div>';
+  }).join("");
+  var sel=document.getElementById("appliance"),cur=sel.value||"gas";
+  sel.innerHTML=APPLIANCES.map(function(a){return '<option value="'+a.id+'">'+aName(a)+'</option>'}).join("");
+  sel.value=cur;
+  var pmh=[["upi","💳 "+tr("mUpi")],["cash","💵 "+tr("mCash")],["card","🏧 "+tr("mCard")]].map(function(m){
+    return '<button type="button" data-m="'+m[0]+'" class="'+(payM===m[0]?"on":"")+'">'+m[1]+'</button>';
+  }).join("");
+  document.getElementById("pm").innerHTML=pmh; document.getElementById("pm2").innerHTML=pmh;
+  document.querySelectorAll(".cpy").forEach(function(b){b.textContent=tr("copy")});
+  document.getElementById("upiId").textContent=UPI_ID; document.getElementById("upiId2").textContent=UPI_ID;
+  renderBrands(true); renderProblems(); showLoc(); showPay(payM);
+  document.querySelectorAll("[data-wa]").forEach(function(a){
+    a.href="https://wa.me/"+a.dataset.wa+"?text="+encodeURIComponent(tr("waHello"));
+  });
+}
+
+function pick(i){
+  document.getElementById("appliance").value=SERVICES[i].k;
+  probSel={}; renderBrands(false); renderProblems(); go("book");
+}
+
+/* payments */
+function upiLink(){
+  var a=parseFloat(document.getElementById("amt").value);
+  return "upi://pay?pa="+encodeURIComponent(UPI_ID)+"&pn="+encodeURIComponent(UPI_NAME)+"&cu=INR"+(a>0?"&am="+a.toFixed(2):"");
+}
+function drawQR(){
+  [["qr",200],["qr2",150]].forEach(function(q){
+    var box=document.getElementById(q[0]); box.innerHTML="";
+    if(typeof QRCode==="undefined"){box.textContent=UPI_ID; return;}
+    new QRCode(box,{text:upiLink(),width:q[1],height:q[1],colorDark:"#3b1a94",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M});
+  });
+}
+function showPay(m){
+  payM=m;
+  ["pUpi","bUpi"].forEach(function(id){document.getElementById(id).classList.toggle("hidden",m!=="upi")});
+  document.getElementById("pCash").classList.toggle("hidden",m!=="cash");
+  document.getElementById("pCard").classList.toggle("hidden",m!=="card");
+  var bn=document.getElementById("bNote");
+  bn.classList.toggle("hidden",m==="upi"); bn.textContent=m==="cash"?tr("cashNote"):tr("cardNote");
+  document.querySelectorAll("#pm button,#pm2 button").forEach(function(b){b.classList.toggle("on",b.dataset.m===m)});
+  if(m==="upi") drawQR();
+}
+["pm","pm2"].forEach(function(id){document.getElementById(id).addEventListener("click",function(e){var b=e.target.closest("button"); if(b) showPay(b.dataset.m)})});
+document.getElementById("amt").addEventListener("input",drawQR);
+function openUpi(){location.href=upiLink()}
+function copyUpi(btn){
+  function done(){btn.textContent=tr("copied"); setTimeout(function(){btn.textContent=tr("copy")},1800)}
+  if(navigator.clipboard) navigator.clipboard.writeText(UPI_ID).then(done,function(){});
+  else{var t=document.createElement("textarea");t.value=UPI_ID;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();done()}
+}
+
+/* booking form */
+function currentAppliance(){
+  var id=document.getElementById("appliance").value;
+  return APPLIANCES.find(function(a){return a.id===id});
+}
+function renderBrands(keep){
+  var a=currentAppliance(),bs=document.getElementById("brand"),prev=keep?bs.value:"";
+  document.getElementById("otherApplianceBox").classList.toggle("hidden",a.id!=="other");
+  var o='<option value="">'+tr("brandSel")+'</option>';
+  a.brands.forEach(function(b){o+='<option value="'+b+'">'+b+'</option>'});
+  o+='<option value="__other">'+tr("brandOther")+'</option><option value="__unknown">'+tr("brandUnknown")+'</option>';
+  bs.innerHTML=o; if(prev) bs.value=prev;
+  document.getElementById("otherBrandBox").classList.toggle("hidden",bs.value!=="__other");
+}
+document.getElementById("appliance").addEventListener("change",function(){probSel={};renderBrands(false);renderProblems()});
+function renderProblems(){
+  var list=PROBS[document.getElementById("appliance").value]||[];
+  document.getElementById("probBox").classList.toggle("hidden",!list.length);
+  document.getElementById("probChips").innerHTML=list.map(function(p,i){
+    var on=probSel[i];
+    return '<label class="chip'+(on?' on':'')+'"><input type="checkbox" data-i="'+i+'"'+(on?' checked':'')+'>'+pTxt(document.getElementById("appliance").value,i)+'</label>';
+  }).join("");
+}
+document.getElementById("probChips").addEventListener("change",function(e){
+  probSel[e.target.dataset.i]=e.target.checked;
+  e.target.parentNode.classList.toggle("on",e.target.checked);
+});
+document.getElementById("brand").addEventListener("change",function(){
+  document.getElementById("otherBrandBox").classList.toggle("hidden",this.value!=="__other");
+});
+document.getElementById("photos").addEventListener("change",function(){
+  Array.prototype.forEach.call(this.files,function(f){files.push({file:f,url:URL.createObjectURL(f),selected:true})});
+  this.value=""; drawPreviews();
+});
+function drawPreviews(){
+  var box=document.getElementById("previews"); box.innerHTML="";
+  files.forEach(function(p){
+    var d=document.createElement("div");
+    d.className="thumb"+(p.selected?" selected":"");
+    d.innerHTML='<img src="'+p.url+'" alt=""><span class="tick">'+(p.selected?"✓":"")+'</span>';
+    d.onclick=function(){p.selected=!p.selected;drawPreviews()};
+    box.appendChild(d);
+  });
+}
+function selectAll(v){files.forEach(function(p){p.selected=v});drawPreviews()}
+function mapUrl(){return "https://www.google.com/maps?q="+loc.lat+","+loc.lng}
+function showLoc(err){
+  var st=document.getElementById("locStatus");
+  document.getElementById("locClear").classList.toggle("hidden",!loc);
+  if(loc) st.innerHTML="✅ "+tr("locOk")+' <a href="'+mapUrl()+'" target="_blank">'+tr("locView")+'</a>';
+  else st.textContent=err?tr("locErr"):tr("locHint");
+}
+function getLoc(){
+  var st=document.getElementById("locStatus");
+  if(!navigator.geolocation){st.textContent=tr("locNo");return}
+  st.textContent=tr("locWait");
+  navigator.geolocation.getCurrentPosition(function(pos){
+    loc={lat:pos.coords.latitude.toFixed(6),lng:pos.coords.longitude.toFixed(6)}; showLoc();
+  },function(){loc=null;showLoc(true)},{enableHighAccuracy:true,timeout:15000});
+}
+function clearLoc(){loc=null;showLoc()}
+
+document.getElementById("bookForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  var a=currentAppliance();
+  var item=a.id==="other"?(document.getElementById("otherAppliance").value.trim()||aName(a)):aName(a);
+  var b=document.getElementById("brand").value,brand="";
+  if(b==="__other") brand=document.getElementById("otherBrand").value.trim();
+  else if(b==="__unknown") brand=tr("brandUnknown");
+  else brand=b;
+  var n=files.filter(function(p){return p.selected}).length;
+  var lines=[tr("waHello"),"",
+    tr("wName")+": "+document.getElementById("name").value.trim(),
+    tr("wPhone")+": "+document.getElementById("phone").value.trim(),
+    tr("wItem")+": "+item];
+  if(brand) lines.push(tr("wBrand")+": "+brand);
+  var pl=[];(PROBS[a.id]||[]).forEach(function(p,i){if(probSel[i]) pl.push(pTxt(a.id,i))});
+  var pt=document.getElementById("problemText").value.trim();
+  if(pt) pl.push(pt);
+  if(pl.length) lines.push(tr("wProblem")+": "+pl.join(", "));
+  var ad=document.getElementById("address").value.trim();
+  if(ad) lines.push(tr("wAddr")+": "+ad);
+  if(loc) lines.push(tr("wLoc")+": "+mapUrl());
+  lines.push(tr("wPay")+": "+tr({upi:"pUpiOpt",cash:"pCashOpt",card:"pCardOpt"}[payM]));
+  if(n) lines.push(tr("wPhotos")+": "+n+" - "+tr("wPhotosNote"));
+  window.open("https://wa.me/"+document.getElementById("sendTo").value+"?text="+encodeURIComponent(lines.join("\n")),"_blank");
+});
+
+/* install */
+var deferredPrompt=null, installBtn=document.getElementById("installBtn");
+if(window.matchMedia("(display-mode: standalone)").matches||window.navigator.standalone) installBtn.classList.add("hidden");
+window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();deferredPrompt=e});
+window.addEventListener("appinstalled",function(){installBtn.classList.add("hidden")});
+installBtn.addEventListener("click",function(){
+  if(deferredPrompt){deferredPrompt.prompt();deferredPrompt=null}else alert(tr("installHelp"));
+});
+if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}
+
+render();
+var h=location.hash.replace("#","");
+if(["home","services","book","pay","shop"].indexOf(h)>-1) go(h);
+</script>
+</body>
+</html>
