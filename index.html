@@ -10,19 +10,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@500;700&family=Noto+Sans+Tamil:wght@400;600&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--leaf:#5b2bd1;--leaf2:#3b1a94;--tur:#ffb020;--kum:#e11d6a;--ink:#1f1b3a;--line:#e0d6f5;--blue:#0b7ad1;--mut:#5f5a78}
+:root{--leaf:#5b2bd1;--leaf2:#3b1a94;--tur:#ffb020;--kum:#e11d6a;--ink:#1f1b3a;--line:#e0d6f5;--blue:#0b7ad1;--mut:#5f5a78;--fh:'Baloo Thambi 2','Noto Sans Tamil','Noto Sans Devanagari',Arial,sans-serif}
 body,input,select,textarea,button{font-family:'Noto Sans Tamil','Noto Sans Devanagari',Arial,sans-serif}
-h1,h2,h3,.phone,button,.lbl-btn,a.btn,.btn-submit,.nav b{font-family:'Baloo Thambi 2','Noto Sans Tamil','Noto Sans Devanagari',Arial,sans-serif}
+h1,h2,h3,.phone,button,.lbl-btn,a.btn,.btn-submit,.nav b,.dh{font-family:var(--fh)}
 body{color:var(--ink);line-height:1.5;min-height:100vh;padding-bottom:calc(84px + env(safe-area-inset-bottom));
 background:radial-gradient(circle at 10% 0,rgba(255,122,89,.28),transparent 42%),radial-gradient(circle at 100% 25%,rgba(192,38,211,.20),transparent 45%),radial-gradient(circle at 0 100%,rgba(11,122,209,.16),transparent 45%),linear-gradient(180deg,#f1e8ff,#fff4ec 50%,#eaf3ff) fixed}
 body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle,rgba(91,43,209,.09) 1.5px,transparent 2px) 0 0/24px 24px}
 header{background:linear-gradient(135deg,var(--leaf),var(--leaf2));color:#fff;padding:calc(14px + env(safe-area-inset-top)) 16px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:4px solid var(--tur);position:sticky;top:0;z-index:20}
+.hwrap{display:flex;align-items:center;gap:12px}
 header h1{font-size:24px;color:var(--tur);line-height:1}
 header small{font-size:12px;color:#efe6ff;display:block}
+.burger{background:rgba(255,255,255,.15);border:2px solid var(--tur);border-radius:10px;width:44px;height:44px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;padding:0;flex:none}
+.burger i{display:block;width:22px;height:3px;background:var(--tur);border-radius:2px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:50;opacity:0;pointer-events:none;transition:opacity .25s}
+.ov.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;left:0;bottom:0;width:78%;max-width:300px;background:#fff;z-index:60;transform:translateX(-105%);transition:transform .25s;overflow-y:auto;box-shadow:6px 0 24px rgba(0,0,0,.3)}
+.drawer.on{transform:none}
+.dh{background:linear-gradient(135deg,var(--leaf),var(--leaf2));color:var(--tur);padding:calc(18px + env(safe-area-inset-top)) 16px 16px;border-bottom:4px solid var(--tur);display:flex;justify-content:space-between;align-items:center;font-size:24px;font-weight:700}
+.dh button{background:none;border:none;color:#fff;font-size:28px;cursor:pointer;line-height:1}
+.mi{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:#fff;border:none;border-bottom:1px solid var(--line);border-left:6px solid transparent;padding:15px 16px;font-size:17px;color:var(--ink);cursor:pointer;font-weight:600}
+.mi.on{background:#efe8ff;color:var(--leaf);border-left-color:var(--tur)}
+.mi span{font-size:22px}
+@media(prefers-reduced-motion:reduce){.drawer,.ov,.view{transition:none;animation:none}}
 .container{max-width:760px;margin:0 auto;padding:16px}
 .view{display:none;animation:in .25s ease}.view.on{display:block}
 @keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
-@media(prefers-reduced-motion:reduce){.view{animation:none}}
 .hero{background:linear-gradient(135deg,#5b2bd1,#c026d3 62%,#ff7a59);color:#fff;border-radius:18px;padding:26px 18px;text-align:center;box-shadow:0 10px 28px rgba(91,43,209,.3);margin-bottom:16px;position:relative;overflow:hidden}
 .hero:after{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;background:rgba(255,176,32,.25)}
 .hero h2{font-size:30px;color:var(--tur);position:relative}
@@ -39,20 +51,23 @@ a.btn{text-decoration:none;color:#fff;padding:12px 8px;border-radius:12px;font-w
 .service-card{background:#fff;padding:14px;border:1px solid var(--line);border-left:6px solid var(--tur);border-radius:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:transform .15s}
 .service-card:active{transform:scale(.97)}
 .service-card h3{color:var(--leaf);font-size:16px}
+.bcard{background:#fff;border:1px solid var(--line);border-left:6px solid var(--tur);border-radius:12px;padding:12px 14px;margin-bottom:10px;cursor:pointer}
+.bcard h3{color:var(--leaf);font-size:17px;margin-bottom:6px}
+.bchip{display:inline-block;background:#efe8ff;color:var(--leaf2);border-radius:14px;padding:3px 10px;font-size:13px;margin:2px 3px 2px 0;font-weight:600}
 .form-group{margin-bottom:12px}
 .form-group label{display:block;margin-bottom:5px;font-weight:600}
 .form-group input,.form-group select,.form-group textarea{width:100%;padding:12px;border:2px solid var(--line);border-radius:10px;font-size:15px;background:#fcfbff;color:var(--ink)}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:3px solid rgba(255,176,32,.55);border-color:var(--leaf)}
 .hidden{display:none!important}
-.photo-box,.loc-box{border:2px dashed var(--blue);border-radius:12px;padding:12px;text-align:center;background:#f3f8ff}
-.photo-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.photo-box,.loc-box{border:2px dashed var(--blue);border-radius:12px;padding:8px;text-align:center;background:#f3f8ff}
+.photo-actions{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
 .photo-actions button,.loc-box button,.lbl-btn{border:none;border-radius:8px;padding:9px 14px;cursor:pointer;font-weight:700;color:#fff;background:var(--blue);display:inline-block}
 .loc-box button{margin:0 4px 4px}
-.btn-deselect,.btn-outline{background:#fff!important;color:var(--blue)!important;border:2px solid var(--blue)!important}
+.btn-outline{background:#fff!important;color:var(--blue)!important;border:2px solid var(--blue)!important}
 .sr-file{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
 .hint{font-size:13px;color:var(--mut);margin-top:8px}.hint a{color:var(--blue);font-weight:700}
 .previews{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;justify-content:center}
-.thumb{position:relative;width:90px;height:90px;border-radius:8px;overflow:hidden;border:3px solid #ddd;cursor:pointer}
+.thumb{position:relative;width:64px;height:64px;border-radius:8px;overflow:hidden;border:3px solid #ddd;cursor:pointer}
 .thumb.selected{border-color:var(--blue)}
 .thumb img{width:100%;height:100%;object-fit:cover}
 .thumb .tick{position:absolute;top:3px;right:3px;background:var(--blue);color:#fff;border-radius:50%;width:22px;height:22px;font-size:14px;line-height:22px;text-align:center}
@@ -75,9 +90,9 @@ a.btn{text-decoration:none;color:#fff;padding:12px 8px;border-radius:12px;font-w
 .shop iframe{width:100%;height:300px;border:2px solid var(--line);border-radius:14px}
 footer{text-align:center;padding:18px;color:var(--mut);font-size:13px}
 footer strong{color:var(--leaf)}
-.nav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom));box-shadow:0 -6px 20px rgba(91,43,209,.12)}
-.nav button{background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:0;padding:4px 0;color:var(--mut);cursor:pointer;position:relative}
-.nav span{font-size:22px;line-height:1.2}.nav b{font-size:12px;font-weight:600}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:repeat(6,1fr);background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom));box-shadow:0 -6px 20px rgba(91,43,209,.12)}
+.nav button{background:none;border:none;display:flex;flex-direction:column;align-items:center;padding:4px 0;color:var(--mut);cursor:pointer;position:relative}
+.nav span{font-size:21px;line-height:1.2}.nav b{font-size:11px;font-weight:600;white-space:nowrap}
 .nav button.on{color:var(--leaf)}
 .nav button.on:before{content:"";position:absolute;top:-7px;width:32px;height:4px;border-radius:0 0 4px 4px;background:var(--tur)}
 .nav button.on span{transform:translateY(-2px) scale(1.12)}
@@ -88,17 +103,19 @@ footer strong{color:var(--leaf)}
 .lang-menu button.on{background:var(--leaf);color:#fff}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .steps{display:flex;gap:8px;margin-bottom:14px}
-.steps span{flex:1;text-align:center;padding:8px;border-radius:10px;background:#efe8ff;color:var(--mut);font-weight:700;font-family:'Baloo Thambi 2','Noto Sans Tamil','Noto Sans Devanagari',Arial,sans-serif}
+.steps span{flex:1;text-align:center;padding:8px;border-radius:10px;background:#efe8ff;color:var(--mut);font-weight:700;font-family:var(--fh)}
 .steps span.on{background:var(--leaf);color:#fff}
 .navbtns{display:grid;grid-template-columns:1fr 2fr;gap:10px}
 .btn-back{background:#fff;border:2px solid var(--leaf);color:var(--leaf);border-radius:12px;font-size:18px;font-weight:700;padding:12px;cursor:pointer}
-.photo-actions{gap:6px}.photo-box,.loc-box{padding:8px}.thumb{width:64px;height:64px}
 </style>
 </head>
 <body>
 
 <header>
-  <div><h1>HALIFA STORES</h1><small data-i18n="tagline"></small></div>
+  <div class="hwrap">
+    <button type="button" class="burger" id="burger" aria-label="Menu"><i></i><i></i><i></i></button>
+    <div><h1>HALIFA STORES</h1><small data-i18n="tagline"></small></div>
+  </div>
   <div class="lang">
     <button id="langBtn" type="button" onclick="toggleLang()">🌐 <span data-i18n="langLbl"></span> ▾</button>
     <div class="lang-menu hidden" id="langMenu">
@@ -109,9 +126,20 @@ footer strong{color:var(--leaf)}
   </div>
 </header>
 
+<div class="ov" id="ov"></div>
+<div class="drawer" id="drawer">
+  <div class="dh"><span data-i18n="menuT"></span><button type="button" id="dClose" aria-label="Close">✕</button></div>
+  <button type="button" class="mi on" data-go="home"><span>🏠</span><b data-i18n="nHome"></b></button>
+  <button type="button" class="mi" data-go="services"><span>🛠️</span><b data-i18n="nServ"></b></button>
+  <button type="button" class="mi" data-go="hotel"><span>🏨</span><b data-i18n="nHotel"></b></button>
+  <button type="button" class="mi" data-go="book"><span>📝</span><b data-i18n="nBook"></b></button>
+  <button type="button" class="mi" data-go="brands"><span>🏷️</span><b data-i18n="nBrands"></b></button>
+  <button type="button" class="mi" data-go="pay"><span>💳</span><b data-i18n="nPay"></b></button>
+  <button type="button" class="mi" data-go="shop"><span>📍</span><b data-i18n="nShop"></b></button>
+</div>
+
 <div class="container">
 
-<!-- HOME -->
 <section class="view on" id="v-home">
   <div class="hero">
     <h2>HALIFA STORES</h2>
@@ -129,14 +157,12 @@ footer strong{color:var(--leaf)}
   <button class="btn-submit" onclick="go('book')" data-i18n="submit"></button>
 </section>
 
-<!-- SERVICES -->
 <section class="view" id="v-services">
   <h2 class="ttl" data-i18n="services"></h2>
   <div class="services" id="services"></div>
   <p class="hint" data-i18n="tapHint"></p>
 </section>
 
-<!-- BOOK -->
 <section class="view" id="v-book">
   <div class="card">
     <h2 class="ttl" data-i18n="book"></h2>
@@ -147,6 +173,7 @@ footer strong{color:var(--leaf)}
           <div class="form-group"><label data-i18n="name"></label><input type="text" id="name" required></div>
           <div class="form-group"><label data-i18n="phone"></label><input type="tel" id="phone" required></div>
         </div>
+        <div class="form-group"><label data-i18n="custT"></label><select id="custType"><option value="home"></option><option value="hotel"></option><option value="shop"></option></select></div>
         <div class="form-group"><label data-i18n="which"></label><select id="appliance"></select></div>
         <div class="form-group hidden" id="otherApplianceBox"><label data-i18n="otherName"></label><input type="text" id="otherAppliance" data-ph="otherPh"></div>
         <div class="form-group" id="brandBox"><label data-i18n="brand"></label><select id="brand"></select></div>
@@ -175,32 +202,30 @@ footer strong{color:var(--leaf)}
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <label data-i18n="payPref"></label>
-          <div class="pm" id="pm2"></div>
-          <div id="bUpi" class="qrbox">
-            <div id="qr2"></div>
-            <div class="upi-id" id="upiId2"></div>
-            <div class="apps">
-              <button type="button" class="cpy" style="background:var(--blue)" onclick="copyUpi(this)"></button>
-              <button type="button" style="background:#1c9c52" onclick="openUpi()" data-i18n="payApp"></button>
-            </div>
-          </div>
-          <p class="hint hidden" id="bNote"></p>
-        </div>
         <div class="form-group"><label data-i18n="sendTo"></label>
           <select id="sendTo"><option value="918610786455">8610786455</option><option value="918531983782">8531983782</option></select>
         </div>
         <div class="navbtns">
           <button type="button" class="btn-back" onclick="step(1)">⬅ <span data-i18n="back"></span></button>
-          <button type="submit" class="btn-submit" data-i18n="submit"></button>
+          <button type="submit" class="btn-submit" id="subBtn" data-i18n="submit"></button>
         </div>
       </div>
     </form>
   </div>
 </section>
 
-<!-- PAY -->
+<section class="view" id="v-hotel">
+  <h2 class="ttl" data-i18n="hotelT"></h2>
+  <div class="services" id="hotelList"></div>
+  <p class="hint" data-i18n="hotelHint"></p>
+</section>
+
+<section class="view" id="v-brands">
+  <h2 class="ttl" data-i18n="brandsT"></h2>
+  <div id="brandList"></div>
+  <p class="hint" data-i18n="brandsHint"></p>
+</section>
+
 <section class="view" id="v-pay">
   <div class="card">
     <h2 class="ttl" data-i18n="payTitle"></h2>
@@ -211,8 +236,8 @@ footer strong{color:var(--leaf)}
       <p class="hint" data-i18n="scan"></p>
       <div class="upi-id" id="upiId"></div>
       <div class="apps">
-        <button class="cpy" style="background:var(--blue)" onclick="copyUpi(this)"></button>
-        <button style="background:#1c9c52" onclick="openUpi()" data-i18n="payApp"></button>
+        <button type="button" class="cpy" style="background:var(--blue)" onclick="copyUpi(this)"></button>
+        <button type="button" style="background:#1c9c52" onclick="openUpi()" data-i18n="payApp"></button>
       </div>
     </div>
     <div id="pCash" class="hidden"><p data-i18n="cashNote"></p></div>
@@ -220,7 +245,6 @@ footer strong{color:var(--leaf)}
   </div>
 </section>
 
-<!-- SHOP -->
 <section class="view shop" id="v-shop">
   <h2 class="ttl" data-i18n="shop"></h2>
   <div class="shop-addr"><strong>HALIFA STORES</strong><br>14, Krishna Nagar, Moolakazhani,<br>Perumanttunallur, Tamil Nadu 603202</div>
@@ -237,6 +261,7 @@ footer strong{color:var(--leaf)}
 <nav class="nav" id="nav">
   <button data-go="home" class="on"><span>🏠</span><b data-i18n="nHome"></b></button>
   <button data-go="services"><span>🛠️</span><b data-i18n="nServ"></b></button>
+  <button data-go="hotel"><span>🏨</span><b data-i18n="nHotelS"></b></button>
   <button data-go="book"><span>📝</span><b data-i18n="nBook"></b></button>
   <button data-go="pay"><span>💳</span><b data-i18n="nPay"></b></button>
   <button data-go="shop"><span>📍</span><b data-i18n="nShop"></b></button>
@@ -244,227 +269,214 @@ footer strong{color:var(--leaf)}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-// ====== SHOP SETTINGS: change the UPI ID to your real one ======
-var UPI_ID = "8531983782@ybl";
-var UPI_NAME = "HALIFA STORES";
-// ===============================================================
+var UPI_ID="8531983782@ybl", UPI_NAME="HALIFA STORES";
 
-var APPLIANCES = [
-  {id:"gas",ta:"கேஸ் ஸ்டவ்",en:"Gas Stove",brands:["Prestige","Butterfly","Preethi","Sunflame","Elica","Pigeon","Glen"]},
-  {id:"mixie",ta:"மிக்ஸர் கிரைண்டர்",en:"Mixer Grinder",brands:["Preethi","Butterfly","Sumeet","Bajaj","Philips","Panasonic","Maharaja Whiteline"]},
-  {id:"cooker",ta:"குக்கர்",en:"Cooker",brands:["Prestige","Hawkins","Butterfly","Pigeon","TTK"]},
-  {id:"ind",ta:"இண்டக்ஷன் ஸ்டவ்",en:"Induction Stove",brands:["Prestige","Philips","Pigeon","Bajaj","Butterfly"]},
-  {id:"fan",ta:"ஃபேன்",en:"Fan",brands:["Crompton","Usha","Havells","Orient","Bajaj","Atomberg"]},
-  {id:"heater",ta:"வாட்டர் ஹீட்டர் / கீசர்",en:"Water Heater / Geyser",brands:["Racold","Bajaj","Crompton","Havells","AO Smith","V-Guard"]},
-  {id:"iron",ta:"அயன் பாக்ஸ்",en:"Iron Box",brands:["Philips","Bajaj","Usha","Morphy Richards","Havells"]},
-  {id:"cyl",ta:"கேஸ் சிலிண்டர் சர்வீஸ்",en:"Gas Cylinder service",brands:["HP Gas","Bharat Gas","Indane"]},
-  {id:"other",ta:"மற்றவை",en:"Other",brands:[]}
+var APPLIANCES=[
+{id:"gas",ta:"கேஸ் ஸ்டவ்",en:"Gas Stove",hi:"गैस स्टोव",ic:"🔥",brands:["Prestige","Butterfly","Preethi","Sunflame","Elica","Pigeon","Glen"]},
+{id:"mixie",ta:"மிக்ஸர் கிரைண்டர்",en:"Mixer Grinder",hi:"मिक्सर ग्राइंडर",ic:"🥣",brands:["Preethi","Butterfly","Sumeet","Bajaj","Philips","Panasonic","Maharaja Whiteline"]},
+{id:"cooker",ta:"குக்கர்",en:"Cooker",hi:"कुकर",ic:"🍳",brands:["Prestige","Hawkins","Butterfly","Pigeon","TTK"]},
+{id:"ind",ta:"இண்டக்ஷன் ஸ்டவ்",en:"Induction Stove",hi:"इंडक्शन स्टोव",ic:"⚡",brands:["Prestige","Philips","Pigeon","Bajaj","Butterfly"]},
+{id:"fan",ta:"ஃபேன்",en:"Fan",hi:"पंखा",ic:"💨",brands:["Crompton","Usha","Havells","Orient","Bajaj","Atomberg"]},
+{id:"heater",ta:"வாட்டர் ஹீட்டர் / கீசர்",en:"Water Heater / Geyser",hi:"वॉटर हीटर / गीज़र",ic:"🚿",brands:["Racold","Bajaj","Crompton","Havells","AO Smith","V-Guard"]},
+{id:"iron",ta:"அயன் பாக்ஸ்",en:"Iron Box",hi:"आयरन (इस्त्री)",ic:"👕",brands:["Philips","Bajaj","Usha","Morphy Richards","Havells"]},
+{id:"cyl",ta:"கேஸ் சிலிண்டர் சர்வீஸ்",en:"Gas Cylinder service",hi:"गैस सिलेंडर सर्विस",ic:"🛢️",brands:["HP Gas","Bharat Gas","Indane"]},
+{id:"wgrind",ta:"வெட் கிரைண்டர்",en:"Wet Grinder",hi:"वेट ग्राइंडर",ic:"🥘",brands:["Ultra","Premier","Elgi","Butterfly","Preethi","Sowbaghya","Vidiem"]},
+{id:"chimney",ta:"கிச்சன் சிம்னி",en:"Kitchen Chimney",hi:"किचन चिमनी",ic:"🌫️",brands:["Elica","Faber","Hindware","Glen","Sunflame","Kaff"]},
+{id:"washer",ta:"வாஷிங் மெஷின்",en:"Washing Machine",hi:"वॉशिंग मशीन",ic:"🧺",brands:["LG","Samsung","Whirlpool","IFB","Bosch","Godrej","Haier"]},
+{id:"fridge",ta:"ஃப்ரிட்ஜ்",en:"Refrigerator",hi:"फ्रिज",ic:"🧊",brands:["LG","Samsung","Whirlpool","Godrej","Haier","Voltas Beko"]},
+{id:"cooler",ta:"ஏர் கூலர்",en:"Air Cooler",hi:"एयर कूलर",ic:"❄️",brands:["Symphony","Bajaj","Crompton","Havells","Kenstar"]},
+{id:"micro",ta:"மைக்ரோவேவ் ஓவன்",en:"Microwave Oven",hi:"माइक्रोवेव ओवन",ic:"🍲",brands:["IFB","LG","Samsung","Whirlpool","Godrej"]},
+{id:"ro",ta:"வாட்டர் பியூரிஃபையர் (RO)",en:"Water Purifier (RO)",hi:"वॉटर प्यूरीफायर (RO)",ic:"💧",brands:["Kent","Aquaguard","Pureit","Livpure","Blue Star"]},
+{id:"pump",ta:"வாட்டர் பம்ப் / மோட்டார்",en:"Water Pump / Motor",hi:"वॉटर पंप / मोटर",ic:"🔌",brands:["Crompton","Kirloskar","Havells","V-Guard","Texmo"]},
+{id:"rice",ta:"ரைஸ் குக்கர் / கெட்டில்",en:"Rice Cooker / Kettle",hi:"राइस कुकर / केतली",ic:"🍚",brands:["Prestige","Preethi","Butterfly","Philips","Pigeon"]},
+{id:"comgas",ta:"கமர்ஷியல் கேஸ் ஸ்டவ் / பர்னர்",en:"Commercial Gas Stove / Burner",hi:"कमर्शियल गैस स्टोव / बर्नर",ic:"🍽️",brands:["Sunflame","Glen","Prestige","Butterfly","Elgi"]},
+{id:"freezer",ta:"டீப் ஃப்ரீசர் / சில்லர்",en:"Deep Freezer / Chiller",hi:"डीप फ्रीज़र / चिलर",ic:"🥶",brands:["Voltas","Blue Star","Celfrost","Western","Godrej"]},
+{id:"other",ta:"மற்றவை",en:"Other",hi:"अन्य",ic:"🔧",brands:[]}
 ];
-var SERVICES = [
- {i:"🔥",k:"gas",ta:"கேஸ் ஸ்டவ் ரிப்பேர்",en:"Gas Stove Repair"},
- {i:"🥣",k:"mixie",ta:"மிக்ஸர் கிரைண்டர் ரிப்பேர்",en:"Mixer Grinder Repair"},
- {i:"🍳",k:"cooker",ta:"குக்கர் சர்வீஸ்",en:"Cooker Service"},
- {i:"👕",k:"iron",ta:"அயன் பாக்ஸ் ரிப்பேர்",en:"Iron Box Repair"},
- {i:"⚡",k:"ind",ta:"இண்டக்ஷன் ஸ்டவ் ரிப்பேர்",en:"Induction Stove Repair"},
- {i:"💨",k:"fan",ta:"ஃபேன் ரிப்பேர்",en:"Fan Repair"},
- {i:"🚿",k:"heater",ta:"வாட்டர் ஹீட்டர் / கீசர் சர்வீஸ்",en:"Water Heater / Geyser Service"},
- {i:"🛢️",k:"cyl",ta:"கேஸ் சிலிண்டர் தொடர்பான சர்வீஸ்",en:"Gas Cylinder related service"},
- {i:"🔧",k:"other",ta:"அனைத்து வீட்டு உபயோகப் பொருட்கள் ரிப்பேர்",en:"General Home Appliance Repair"},
- {i:"⚙️",k:"other",ta:"ஸ்பேர் பார்ட்ஸ் மாற்றம்",en:"Spare parts replacement"}
+var SERVICES=[
+{i:"🔥",k:"gas",ta:"கேஸ் ஸ்டவ் ரிப்பேர்",en:"Gas Stove Repair",hi:"गैस स्टोव रिपेयर"},
+{i:"🥣",k:"mixie",ta:"மிக்ஸர் கிரைண்டர் ரிப்பேர்",en:"Mixer Grinder Repair",hi:"मिक्सर ग्राइंडर रिपेयर"},
+{i:"🥘",k:"wgrind",ta:"வெட் கிரைண்டர் ரிப்பேர்",en:"Wet Grinder Repair",hi:"वेट ग्राइंडर रिपेयर"},
+{i:"🍳",k:"cooker",ta:"குக்கர் சர்வீஸ்",en:"Cooker Service",hi:"कुकर सर्विस"},
+{i:"🍚",k:"rice",ta:"ரைஸ் குக்கர் / கெட்டில் ரிப்பேர்",en:"Rice Cooker / Kettle Repair",hi:"राइस कुकर / केतली रिपेयर"},
+{i:"👕",k:"iron",ta:"அயன் பாக்ஸ் ரிப்பேர்",en:"Iron Box Repair",hi:"आयरन रिपेयर"},
+{i:"⚡",k:"ind",ta:"இண்டக்ஷன் ஸ்டவ் ரிப்பேர்",en:"Induction Stove Repair",hi:"इंडक्शन स्टोव रिपेयर"},
+{i:"🌫️",k:"chimney",ta:"கிச்சன் சிம்னி சர்வீஸ்",en:"Kitchen Chimney Service",hi:"किचन चिमनी सर्विस"},
+{i:"💨",k:"fan",ta:"ஃபேன் ரிப்பேர்",en:"Fan Repair",hi:"पंखा रिपेयर"},
+{i:"❄️",k:"cooler",ta:"ஏர் கூலர் ரிப்பேர்",en:"Air Cooler Repair",hi:"एयर कूलर रिपेयर"},
+{i:"🚿",k:"heater",ta:"வாட்டர் ஹீட்டர் / கீசர் சர்வீஸ்",en:"Water Heater / Geyser Service",hi:"वॉटर हीटर / गीज़र सर्विस"},
+{i:"🧺",k:"washer",ta:"வாஷிங் மெஷின் ரிப்பேர்",en:"Washing Machine Repair",hi:"वॉशिंग मशीन रिपेयर"},
+{i:"🧊",k:"fridge",ta:"ஃப்ரிட்ஜ் ரிப்பேர்",en:"Refrigerator Repair",hi:"फ्रिज रिपेयर"},
+{i:"🍲",k:"micro",ta:"மைக்ரோவேவ் ஓவன் ரிப்பேர்",en:"Microwave Oven Repair",hi:"माइक्रोवेव ओवन रिपेयर"},
+{i:"💧",k:"ro",ta:"RO வாட்டர் பியூரிஃபையர் சர்வீஸ்",en:"RO Water Purifier Service",hi:"RO वॉटर प्यूरीफायर सर्विस"},
+{i:"🔌",k:"pump",ta:"வாட்டர் பம்ப் / மோட்டார் ரிப்பேர்",en:"Water Pump / Motor Repair",hi:"वॉटर पंप / मोटर रिपेयर"},
+{i:"🛢️",k:"cyl",ta:"கேஸ் சிலிண்டர் தொடர்பான சர்வீஸ்",en:"Gas Cylinder related service",hi:"गैस सिलेंडर संबंधी सर्विस"},
+{i:"🔧",k:"other",ta:"அனைத்து வீட்டு உபயோகப் பொருட்கள் ரிப்பேர்",en:"All Home Appliance Repair",hi:"सभी घरेलू उपकरणों की रिपेयर"},
+{i:"⚙️",k:"other",ta:"ஸ்பேர் பார்ட்ஸ் மாற்றம்",en:"Spare parts replacement",hi:"स्पेयर पार्ट्स बदलना"},
+{i:"🏨",k:"other",c:"hotel",ta:"ஹோட்டல் / உணவகம் - அனைத்து சாதனங்கள் சர்வீஸ்",en:"Hotel / Restaurant - All Appliances Service",hi:"होटल / रेस्टोरेंट - सभी उपकरणों की सर्विस"},
+{i:"🍽️",k:"comgas",c:"hotel",ta:"கமர்ஷியல் கேஸ் ஸ்டவ் / பர்னர் சர்வீஸ்",en:"Commercial Gas Stove / Burner Service",hi:"कमर्शियल गैस स्टोव / बर्नर सर्विस"},
+{i:"🥶",k:"freezer",c:"hotel",ta:"டீப் ஃப்ரீசர் / சில்லர் ரிப்பேர்",en:"Deep Freezer / Chiller Repair",hi:"डीप फ्रीज़र / चिलर रिपेयर"},
+{i:"🛒",k:"other",ta:"புதிய பொருட்கள் விற்பனை",en:"New appliances sales",hi:"नए उपकरणों की बिक्री"}
 ];
-var PROBS = {
- gas:[["பர்னர் எரியவில்லை","Burner not lighting"],["தீ சிறிதாக எரிகிறது","Low flame"],["கேஸ் வாசனை / லீக்","Gas smell / leak"],["நாப் இறுக்கமாக உள்ளது","Knob stuck"],["இக்னிட்டர் வேலை செய்யவில்லை","Igniter not working"]],
- mixie:[["மோட்டார் ஓடவில்லை","Motor not running"],["ஜார் லீக் ஆகிறது","Jar leaking"],["பிளேடு சுற்றவில்லை","Blade not rotating"],["அதிக சத்தம்","Loud noise"],["ஸ்விட்ச் பிரச்சனை","Switch problem"]],
- cooker:[["கேஸ்கட் (ரப்பர்) தளர்வு","Gasket (rubber) loose"],["ஸ்டீம் லீக் ஆகிறது","Steam leaking"],["விசில் பிரச்சனை","Whistle problem"],["கைப்பிடி உடைந்தது","Handle broken"],["மூடி இறுக்கமாக உள்ளது","Lid stuck"]],
- ind:[["ஆன் ஆகவில்லை","Not switching on"],["சூடாகவில்லை","Not heating"],["எரர் கோடு காட்டுகிறது","Error code showing"],["ஃபேன் சத்தம்","Fan noise"],["டச் வேலை செய்யவில்லை","Touch not working"]],
- fan:[["ஓடவில்லை","Not running"],["மெதுவாக ஓடுகிறது","Running slow"],["சத்தம் வருகிறது","Making noise"],["ரெகுலேட்டர் பிரச்சனை","Regulator problem"],["ஆடுகிறது","Wobbling"]],
- heater:[["சூடாகவில்லை","Not heating"],["தண்ணீர் கசிவு","Water leaking"],["தெர்மோஸ்டாட் பிரச்சனை","Thermostat problem"],["MCB ட்ரிப் ஆகிறது","Tripping"],["பவர் இல்லை","No power"]],
- iron:[["சூடாகவில்லை","Not heating"],["வெப்பநிலை கட்டுப்படவில்லை","Temperature not controlling"],["ஸ்டீம் வரவில்லை","Steam not coming"],["வயர் பிரச்சனை","Cord problem"],["ஆன் ஆகவில்லை","Not switching on"]],
- cyl:[["கேஸ் வாசனை / லீக்","Gas smell / leak"],["ரெகுலேட்டர் பிரச்சனை","Regulator problem"],["டியூப் / பைப் மாற்றம்","Tube / pipe change"],["சிலிண்டர் இணைப்பு பிரச்சனை","Cylinder connection problem"]],
- other:[]
+var HOTEL=[
+{i:"🔥",en:"2 Burner Gas Stove",ta:"2 பர்னர் கேஸ் ஸ்டவ்",hi:"2 बर्नर गैस स्टोव"},
+{i:"🔥",en:"3 Burner Gas Stove",ta:"3 பர்னர் கேஸ் ஸ்டவ்",hi:"3 बर्नर गैस स्टोव"},
+{i:"🔥",en:"4 Burner Gas Range",ta:"4 பர்னர் கேஸ் ரேஞ்ச்",hi:"4 बर्नर गैस रेंज"},
+{i:"🥞",en:"Dosa Stove / Dosa Tawa Burner",ta:"தோசை ஸ்டவ் / தோசைக்கல் பர்னர்",hi:"डोसा स्टोव / डोसा तवा बर्नर"},
+{i:"♨️",en:"Idli Cooker / Steamer",ta:"இட்லி குக்கர் / ஸ்டீமர்",hi:"इडली कुकर / स्टीमर"},
+{i:"🫓",en:"Tandoor Oven",ta:"தந்தூர் அடுப்பு",hi:"तंदूर ओवन"},
+{i:"🫓",en:"Chapati / Roti Maker",ta:"சப்பாத்தி / ரொட்டி மேக்கர்",hi:"चपाती / रोटी मेकर"},
+{i:"🥘",en:"Commercial Wet Grinder",ta:"கமர்ஷியல் வெட் கிரைண்டர்",hi:"कमर्शियल वेट ग्राइंडर"},
+{i:"🥣",en:"Commercial Mixer / Masala Grinder",ta:"கமர்ஷியல் மிக்ஸர் / மசாலா கிரைண்டர்",hi:"कमर्शियल मिक्सर / मसाला ग्राइंडर"},
+{i:"🍟",en:"Deep Fryer",ta:"டீப் ஃபிரையர்",hi:"डीप फ्रायर"},
+{i:"🌫️",en:"Kitchen Chimney / Exhaust Fan",ta:"கிச்சன் சிம்னி / எக்ஸாஸ்ட் ஃபேன்",hi:"किचन चिमनी / एग्ज़ॉस्ट फैन"},
+{i:"🥶",en:"Deep Freezer",ta:"டீப் ஃப்ரீசர்",hi:"डीप फ्रीज़र"},
+{i:"🧊",en:"Visi Cooler / Bottle Cooler",ta:"விசி கூலர் / பாட்டில் கூலர்",hi:"विज़ी कूलर / बॉटल कूलर"},
+{i:"🧊",en:"Commercial Fridge / Chiller",ta:"கமர்ஷியல் ஃப்ரிட்ஜ் / சில்லர்",hi:"कमर्शियल फ्रिज / चिलर"},
+{i:"🚿",en:"Water Boiler / Geyser",ta:"வாட்டர் பாய்லர் / கீசர்",hi:"वॉटर बॉयलर / गीज़र"},
+{i:"♨️",en:"Food Warmer / Bain Marie",ta:"ஃபுட் வார்மர் / பெய்ன் மேரி",hi:"फ़ूड वार्मर / बेन मेरी"},
+{i:"☕",en:"Tea / Coffee Machine",ta:"டீ / காபி மெஷின்",hi:"चाय / कॉफ़ी मशीन"},
+{i:"🍹",en:"Juice Mixer / Blender",ta:"ஜூஸ் மிக்ஸர் / பிளெண்டர்",hi:"जूस मिक्सर / ब्लेंडर"},
+{i:"💧",en:"RO Water Plant / Purifier",ta:"RO வாட்டர் பிளாண்ட் / பியூரிஃபையர்",hi:"RO वॉटर प्लांट / प्यूरीफायर"},
+{i:"💨",en:"Fan / Air Cooler",ta:"ஃபேன் / ஏர் கூலர்",hi:"पंखा / एयर कूलर"},
+{i:"🛢️",en:"Gas Pipeline / Regulator / Cylinder",ta:"கேஸ் பைப்லைன் / ரெகுலேட்டர் / சிலிண்டர்",hi:"गैस पाइपलाइन / रेगुलेटर / सिलेंडर"},
+{i:"🔧",en:"Other Hotel Appliances",ta:"மற்ற ஹோட்டல் சாதனங்கள்",hi:"अन्य होटल उपकरण"}
+];
+var PROBS={
+gas:[["பர்னர் எரியவில்லை","Burner not lighting","बर्नर नहीं जल रहा"],["தீ சிறிதாக எரிகிறது","Low flame","लौ धीमी है"],["கேஸ் வாசனை / லீக்","Gas smell / leak","गैस की बदबू / लीक"],["நாப் இறுக்கமாக உள்ளது","Knob stuck","नॉब जाम है"],["இக்னிட்டர் வேலை செய்யவில்லை","Igniter not working","इग्नाइटर काम नहीं कर रहा"]],
+mixie:[["மோட்டார் ஓடவில்லை","Motor not running","मोटर नहीं चल रही"],["ஜார் லீக் ஆகிறது","Jar leaking","जार लीक हो रहा है"],["பிளேடு சுற்றவில்லை","Blade not rotating","ब्लेड नहीं घूम रहा"],["அதிக சத்தம்","Loud noise","ज़्यादा आवाज़"],["ஸ்விட்ச் பிரச்சனை","Switch problem","स्विच की समस्या"]],
+cooker:[["கேஸ்கட் (ரப்பர்) தளர்வு","Gasket (rubber) loose","गैस्केट (रबर) ढीला"],["ஸ்டீம் லீக் ஆகிறது","Steam leaking","भाप लीक हो रही है"],["விசில் பிரச்சனை","Whistle problem","सीटी की समस्या"],["கைப்பிடி உடைந்தது","Handle broken","हैंडल टूटा है"],["மூடி இறுக்கமாக உள்ளது","Lid stuck","ढक्कन जाम है"]],
+ind:[["ஆன் ஆகவில்லை","Not switching on","चालू नहीं हो रहा"],["சூடாகவில்லை","Not heating","गरम नहीं हो रहा"],["எரர் கோடு காட்டுகிறது","Error code showing","एरर कोड दिख रहा है"],["ஃபேன் சத்தம்","Fan noise","पंखे की आवाज़"],["டச் வேலை செய்யவில்லை","Touch not working","टच काम नहीं कर रहा"]],
+fan:[["ஓடவில்லை","Not running","चल नहीं रहा"],["மெதுவாக ஓடுகிறது","Running slow","धीरे चल रहा है"],["சத்தம் வருகிறது","Making noise","आवाज़ आ रही है"],["ரெகுலேட்டர் பிரச்சனை","Regulator problem","रेगुलेटर की समस्या"],["ஆடுகிறது","Wobbling","हिल रहा है"]],
+heater:[["சூடாகவில்லை","Not heating","गरम नहीं हो रहा"],["தண்ணீர் கசிவு","Water leaking","पानी टपक रहा है"],["தெர்மோஸ்டாட் பிரச்சனை","Thermostat problem","थर्मोस्टैट की समस्या"],["MCB ட்ரிப் ஆகிறது","Tripping","MCB ट्रिप हो रहा है"],["பவர் இல்லை","No power","बिजली नहीं आ रही"]],
+iron:[["சூடாகவில்லை","Not heating","गरम नहीं हो रहा"],["வெப்பநிலை கட்டுப்படவில்லை","Temperature not controlling","तापमान नियंत्रित नहीं हो रहा"],["ஸ்டீம் வரவில்லை","Steam not coming","भाप नहीं आ रही"],["வயர் பிரச்சனை","Cord problem","तार की समस्या"],["ஆன் ஆகவில்லை","Not switching on","चालू नहीं हो रहा"]],
+cyl:[["கேஸ் வாசனை / லீக்","Gas smell / leak","गैस की बदबू / लीक"],["ரெகுலேட்டர் பிரச்சனை","Regulator problem","रेगुलेटर की समस्या"],["டியூப் / பைப் மாற்றம்","Tube / pipe change","पाइप / ट्यूब बदलना"],["சிலிண்டர் இணைப்பு பிரச்சனை","Cylinder connection problem","सिलेंडर कनेक्शन की समस्या"]]
 };
-var T = {
- ta:{install:"📲 ஆப்பாக Install செய்",installHelp:"Chrome-ல் மேலே வலது ⋮ மெனு தொட்டு, 'Install app' அல்லது 'Add to Home screen' தேர்வு செய்யுங்கள்.",shop:"எங்கள் கடை இருக்கும் இடம்",mapOpen:"📍 Google Map-ல் திற",mapDir:"🚗 வழி காட்டு",slogan:"உங்களின் நம்பகமான வீட்டு உபயோகப் பொருட்கள் சர்வீஸ் பார்ட்னர்",tagline:"வீட்டு உபயோகப் பொருட்கள் விற்பனை & சர்வீஸ்",
-  items:"கேஸ் ஸ்டவ் • மிக்ஸி • குக்கர் • அயன் பாக்ஸ் • இண்டக்ஷன் ஸ்டவ் • ஃபேன் • ஹீட்டர்",
-  call:"அழைக்க",services:"எங்களின் சேவைகள்",tapHint:"சேவையைத் தொட்டால் நேராக புக்கிங் திறக்கும்.",book:"சர்வீஸ் புக் செய்யுங்கள்",
-  nHome:"முகப்பு",nServ:"சேவைகள்",nBook:"புக்கிங்",nPay:"பணம்",nShop:"கடை",
-  name:"உங்கள் பெயர்:",phone:"போன் நம்பர்:",which:"எந்த சாதனம் சர்வீஸ் செய்ய வேண்டும்?",
-  otherName:"சாதனத்தின் பெயரை டைப் செய்யுங்கள்:",otherPh:"எ.கா: வெட் கிரைண்டர்",
-  brand:"கம்பெனி / பிராண்ட்:",otherBrand:"கம்பெனி பெயரை டைப் செய்யுங்கள்:",otherBrandPh:"கம்பெனி பெயர்",
-  brandSel:"-- கம்பெனி தேர்வு செய்யுங்கள் --",brandOther:"மற்ற கம்பெனி",brandUnknown:"தெரியாது",
-  photo:"போட்டோ (விருப்பம்):",addPhoto:"📷 போட்டோ சேர்",selAll:"அனைத்தும் தேர்வு",deselAll:"அனைத்தும் நீக்கு",
-  photoHint:"போட்டோவை தொட்டால் தேர்வு / நீக்கம் ஆகும்.",
-  problem:"என்ன பிரச்சனை? (தேர்வு செய்யுங்கள்):",problemText:"பிரச்சனையை விளக்கி எழுதுங்கள் (விருப்பம்):",problemPh:"எ.கா: நேற்றிலிருந்து ஆன் ஆகவில்லை, சத்தம் வருகிறது",wProblem:"பிரச்சனை",
-  loc:"இருப்பிடம் (விருப்பம்):",locBtn:"📍 என் இருப்பிடத்தை சேர்",locClear:"நீக்கு",locHint:"தொட்டால் உங்கள் Google Map இருப்பிடம் WhatsApp செய்தியில் சேரும்.",locWait:"இருப்பிடம் எடுக்கிறது...",locOk:"இருப்பிடம் சேர்ந்தது.",locView:"Map-ல் பார்க்க",locErr:"இருப்பிடம் கிடைக்கவில்லை. Phone-ல் Location ON செய்து, அனுமதி கொடுங்கள்.",locNo:"இந்த browser-ல் இருப்பிடம் வேலை செய்யாது.",wLoc:"இருப்பிடம் (Google Map)",
-  address:"முகவரி (Address):",addressPh:"உங்கள் முகவரி",sendTo:"எந்த நம்பருக்கு WhatsApp அனுப்ப வேண்டும்?",
-  submit:"இப்போதே சர்வீஸ் புக் செய்",waHello:"வணக்கம் HALIFA STORES, எனக்கு சர்வீஸ் வேண்டும்.",
-  wName:"பெயர்",wPhone:"போன்",wItem:"சாதனம்",wBrand:"கம்பெனி",wAddr:"முகவரி",wPhotos:"போட்டோ",wPay:"பணம் செலுத்தும் முறை",
-  wPhotosNote:"போட்டோ இருக்கிறது - இந்த சாட்டில் அனுப்புகிறேன்",
-  payTitle:"பணம் செலுத்துங்கள்",payPref:"பணம் செலுத்தும் முறை:",mUpi:"UPI / QR",mCash:"பணம் (Cash)",mCard:"கார்டு",
-  amt:"தொகை (₹) - விருப்பம்:",scan:"GPay / PhonePe / Paytm மூலம் QR ஸ்கேன் செய்யுங்கள்.",copy:"📋 UPI ID காப்பி",copied:"✅ காப்பி ஆனது",payApp:"📱 UPI ஆப்பில் செலுத்து",
-  cashNote:"சர்வீஸ் முடிந்ததும் டெக்னீஷியனிடம் அல்லது கடையில் பணமாக செலுத்தலாம்.",cardNote:"கடையில் கார்டு மூலம் செலுத்தலாம். (கடையில் மட்டும்)",
-  pUpiOpt:"UPI / QR",pCashOpt:"Cash - சர்வீஸ் முடிந்ததும்",pCardOpt:"கார்டு (கடையில்)"},
- en:{install:"📲 Install as App",installHelp:"In Chrome, tap the ⋮ menu at the top right, then choose 'Install app' or 'Add to Home screen'.",shop:"Our Shop Location",mapOpen:"📍 Open in Google Maps",mapDir:"🚗 Get Directions",slogan:"Your Trusted Home Appliance Service Partner",tagline:"Home Appliance Sales & Service",
-  items:"Gas Stove • Mixie • Cooker • Iron Box • Induction Stove • Fan • Heater",
-  call:"Call",services:"Our Services",tapHint:"Tap a service to open the booking form.",book:"Book a Service",
-  nHome:"Home",nServ:"Services",nBook:"Book",nPay:"Pay",nShop:"Shop",
-  name:"Your Name:",phone:"Phone Number:",which:"Which appliance needs service?",
-  otherName:"Type the appliance name:",otherPh:"e.g. Wet Grinder",
-  brand:"Company / Brand:",otherBrand:"Type the company name:",otherBrandPh:"Company name",
-  brandSel:"-- Select brand --",brandOther:"Other brand",brandUnknown:"Not sure",
-  photo:"Photo (optional):",addPhoto:"📷 Add Photo",selAll:"Select All",deselAll:"Deselect All",
-  photoHint:"Tap a photo to select / deselect it.",
-  problem:"What is the problem? (select):",problemText:"Describe the problem (optional):",problemPh:"e.g. Not switching on since yesterday, making noise",wProblem:"Problem",
-  loc:"Location (optional):",locBtn:"📍 Add my location",locClear:"Remove",locHint:"Tap to add your Google Maps location to the WhatsApp message.",locWait:"Getting location...",locOk:"Location added.",locView:"View on map",locErr:"Could not get location. Turn on Location on your phone and allow access.",locNo:"Location is not supported in this browser.",wLoc:"Location (Google Maps)",
-  address:"Address:",addressPh:"Your address",sendTo:"Send WhatsApp to which number?",
-  submit:"Book Service Now",waHello:"Hello HALIFA STORES, I need appliance service.",
-  wName:"Name",wPhone:"Phone",wItem:"Appliance",wBrand:"Brand",wAddr:"Address",wPhotos:"Photos",wPay:"Payment",
-  wPhotosNote:"I have photos - will send them in this chat",
-  payTitle:"Make a Payment",payPref:"Payment method:",mUpi:"UPI / QR",mCash:"Cash",mCard:"Card",
-  amt:"Amount (₹) - optional:",scan:"Scan with GPay / PhonePe / Paytm.",copy:"📋 Copy UPI ID",copied:"✅ Copied",payApp:"📱 Pay in UPI app",
-  cashNote:"Pay in cash to the technician after the service, or at the shop.",cardNote:"Card payment is available at the shop only.",
-  pUpiOpt:"UPI / QR",pCashOpt:"Cash - after service",pCardOpt:"Card (at shop)"}
+var LI={ta:0,en:1,hi:2};
+var T={
+ta:{nHotelS:"ஹோட்டல்",nHotel:"ஹோட்டல் சர்வீஸ்",hotelT:"ஹோட்டல் / உணவகம் - அனைத்து சாதனங்கள் சர்வீஸ்",hotelHint:"சாதனத்தைத் தொட்டால் புக்கிங் திறக்கும். இங்கு இல்லாத சாதனங்களுக்கும் சர்வீஸ் உண்டு.",custT:"யாருக்கு சர்வீஸ்?",cHome:"வீடு",cHotel:"ஹோட்டல் / உணவகம்",cShop:"கடை / நிறுவனம்",wCust:"சர்வீஸ் இடம்",langLbl:"மொழி",menuT:"மெனு",st1:"1. விவரங்கள்",st2:"2. அனுப்பு",next:"அடுத்து",back:"பின்",install:"📲 ஆப்பாக Install செய்",installHelp:"Chrome-ல் மேலே வலது ⋮ மெனு தொட்டு, 'Install app' அல்லது 'Add to Home screen' தேர்வு செய்யுங்கள்.",shop:"எங்கள் கடை இருக்கும் இடம்",mapOpen:"📍 Google Map-ல் திற",mapDir:"🚗 வழி காட்டு",slogan:"உங்களின் நம்பகமான வீட்டு உபயோகப் பொருட்கள் சர்வீஸ் பார்ட்னர்",tagline:"வீடு • ஹோட்டல் • கடை - அனைத்து சாதனங்கள் விற்பனை & சர்வீஸ்",items:"அனைத்து வீட்டு உபயோகப் பொருட்கள் சர்வீஸ்: கேஸ் ஸ்டவ் • மிக்ஸி • குக்கர் • அயன் பாக்ஸ் • இண்டக்ஷன் • ஃபேன் • ஹீட்டர் • கிரைண்டர் • வாஷிங் மெஷின் • ஃப்ரிட்ஜ் • RO",call:"அழைக்க",services:"அனைத்து சாதனங்கள் சர்வீஸ் (வீடு, ஹோட்டல், கடை)",tapHint:"சேவையைத் தொட்டால் நேராக புக்கிங் திறக்கும்.",book:"சர்வீஸ் புக் செய்யுங்கள்",nHome:"முகப்பு",nServ:"சேவைகள்",nBook:"புக்கிங்",nPay:"பணம்",nShop:"கடை",nBrands:"கம்பெனிகள்",brandsT:"நாங்கள் சர்வீஸ் செய்யும் கம்பெனிகள்",brandsHint:"சாதனத்தைத் தொட்டால் புக்கிங் திறக்கும். மற்ற கம்பெனிகளும் சர்வீஸ் செய்யப்படும்.",name:"உங்கள் பெயர்:",phone:"போன் நம்பர்:",which:"எந்த சாதனம் சர்வீஸ் செய்ய வேண்டும்?",otherName:"சாதனத்தின் பெயரை டைப் செய்யுங்கள்:",otherPh:"எ.கா: டிவி",brand:"கம்பெனி / பிராண்ட்:",otherBrand:"கம்பெனி பெயரை டைப் செய்யுங்கள்:",otherBrandPh:"கம்பெனி பெயர்",brandSel:"-- கம்பெனி தேர்வு செய்யுங்கள் --",brandOther:"மற்ற கம்பெனி",brandUnknown:"தெரியாது",photo:"போட்டோ (விருப்பம்):",addPhoto:"📷 போட்டோ சேர்",problem:"என்ன பிரச்சனை? (தேர்வு செய்யுங்கள்):",problemText:"பிரச்சனையை விளக்கி எழுதுங்கள் (விருப்பம்):",problemPh:"எ.கா: நேற்றிலிருந்து ஆன் ஆகவில்லை, சத்தம் வருகிறது",wProblem:"பிரச்சனை",loc:"இருப்பிடம் (விருப்பம்):",locBtn:"📍 என் இருப்பிடத்தை சேர்",locClear:"நீக்கு",locHint:"தொட்டால் உங்கள் Google Map இருப்பிடம் WhatsApp செய்தியில் சேரும்.",locWait:"இருப்பிடம் எடுக்கிறது...",locOk:"இருப்பிடம் சேர்ந்தது.",locView:"Map-ல் பார்க்க",locErr:"இருப்பிடம் கிடைக்கவில்லை. Phone-ல் Location ON செய்து, அனுமதி கொடுங்கள்.",locNo:"இந்த browser-ல் இருப்பிடம் வேலை செய்யாது.",wLoc:"இருப்பிடம் (Google Map)",address:"முகவரி (Address):",addressPh:"உங்கள் முகவரி",sendTo:"எந்த நம்பருக்கு WhatsApp அனுப்ப வேண்டும்?",submit:"இப்போதே சர்வீஸ் புக் செய்",waHello:"வணக்கம் HALIFA STORES, எனக்கு சர்வீஸ் வேண்டும்.",wName:"பெயர்",wPhone:"போன்",wItem:"சாதனம்",wBrand:"கம்பெனி",wAddr:"முகவரி",wPhotos:"போட்டோ",wPhotosNote:"போட்டோ இருக்கிறது - இந்த சாட்டில் அனுப்புகிறேன்",noShare:"இந்த phone-ல் போட்டோ நேரடியாக அனுப்ப முடியாது. WhatsApp திறக்கும், போட்டோவை சாட்டில் attach செய்யுங்கள்.",payTitle:"பணம் செலுத்துங்கள்",mUpi:"UPI / QR",mCash:"பணம் (Cash)",mCard:"கார்டு",amt:"தொகை (₹) - விருப்பம்:",scan:"GPay / PhonePe / Paytm மூலம் QR ஸ்கேன் செய்யுங்கள்.",copy:"📋 UPI ID காப்பி",copied:"✅ காப்பி ஆனது",payApp:"📱 UPI ஆப்பில் செலுத்து",cashNote:"சர்வீஸ் முடிந்ததும் டெக்னீஷியனிடம் அல்லது கடையில் பணமாக செலுத்தலாம்.",cardNote:"கடையில் கார்டு மூலம் செலுத்தலாம். (கடையில் மட்டும்)"},
+en:{nHotelS:"Hotel",nHotel:"Hotel Service",hotelT:"Hotel / Restaurant - All Appliances Service",hotelHint:"Tap an appliance to open the booking form. Other appliances are also serviced.",custT:"Service for:",cHome:"Home",cHotel:"Hotel / Restaurant",cShop:"Shop / Business",wCust:"Service for",langLbl:"Language",menuT:"Menu",st1:"1. Details",st2:"2. Send",next:"Next",back:"Back",install:"📲 Install as App",installHelp:"In Chrome, tap the ⋮ menu at the top right, then choose 'Install app' or 'Add to Home screen'.",shop:"Our Shop Location",mapOpen:"📍 Open in Google Maps",mapDir:"🚗 Get Directions",slogan:"Your Trusted Home Appliance Service Partner",tagline:"Homes • Hotels • Shops - All Appliances Sales & Service",items:"All Home Appliances Services: Gas Stove • Mixie • Cooker • Iron Box • Induction • Fan • Heater • Grinder • Washing Machine • Fridge • RO",call:"Call",services:"All Appliances Services (Home, Hotel & Shop)",tapHint:"Tap a service to open the booking form.",book:"Book a Service",nHome:"Home",nServ:"Services",nBook:"Book",nPay:"Pay",nShop:"Shop",nBrands:"Brands",brandsT:"Brands We Service",brandsHint:"Tap an appliance to open the booking form. Other brands are also serviced.",name:"Your Name:",phone:"Phone Number:",which:"Which appliance needs service?",otherName:"Type the appliance name:",otherPh:"e.g. TV",brand:"Company / Brand:",otherBrand:"Type the company name:",otherBrandPh:"Company name",brandSel:"-- Select brand --",brandOther:"Other brand",brandUnknown:"Not sure",photo:"Photo (optional):",addPhoto:"📷 Add Photo",problem:"What is the problem? (select):",problemText:"Describe the problem (optional):",problemPh:"e.g. Not switching on since yesterday, making noise",wProblem:"Problem",loc:"Location (optional):",locBtn:"📍 Add my location",locClear:"Remove",locHint:"Tap to add your Google Maps location to the WhatsApp message.",locWait:"Getting location...",locOk:"Location added.",locView:"View on map",locErr:"Could not get location. Turn on Location on your phone and allow access.",locNo:"Location is not supported in this browser.",wLoc:"Location (Google Maps)",address:"Address:",addressPh:"Your address",sendTo:"Send WhatsApp to which number?",submit:"Book Service Now",waHello:"Hello HALIFA STORES, I need appliance service.",wName:"Name",wPhone:"Phone",wItem:"Appliance",wBrand:"Brand",wAddr:"Address",wPhotos:"Photos",wPhotosNote:"I have photos - will send them in this chat",noShare:"Photos cannot be shared directly on this phone. WhatsApp will open - please attach the photos in the chat.",payTitle:"Make a Payment",mUpi:"UPI / QR",mCash:"Cash",mCard:"Card",amt:"Amount (₹) - optional:",scan:"Scan with GPay / PhonePe / Paytm.",copy:"📋 Copy UPI ID",copied:"✅ Copied",payApp:"📱 Pay in UPI app",cashNote:"Pay in cash to the technician after the service, or at the shop.",cardNote:"Card payment is available at the shop only."},
+hi:{nHotelS:"होटल",nHotel:"होटल सर्विस",hotelT:"होटल / रेस्टोरेंट - सभी उपकरणों की सर्विस",hotelHint:"किसी उपकरण को दबाएँ, बुकिंग फ़ॉर्म खुल जाएगा। अन्य उपकरणों की भी सर्विस होती है।",custT:"सर्विस किसके लिए?",cHome:"घर",cHotel:"होटल / रेस्टोरेंट",cShop:"दुकान / व्यवसाय",wCust:"सर्विस के लिए",langLbl:"भाषा",menuT:"मेनू",st1:"1. विवरण",st2:"2. भेजें",next:"आगे",back:"पीछे",install:"📲 ऐप के रूप में इंस्टॉल करें",installHelp:"Chrome में ऊपर दाईं ओर ⋮ मेनू दबाएँ, फिर 'Install app' या 'Add to Home screen' चुनें।",shop:"हमारी दुकान का पता",mapOpen:"📍 Google Maps में खोलें",mapDir:"🚗 रास्ता देखें",slogan:"आपका भरोसेमंद घरेलू उपकरण सर्विस पार्टनर",tagline:"घर • होटल • दुकान - सभी उपकरण बिक्री और सर्विस",items:"सभी घरेलू उपकरणों की सर्विस: गैस स्टोव • मिक्सी • कुकर • आयरन • इंडक्शन • पंखा • हीटर • ग्राइंडर • वॉशिंग मशीन • फ्रिज • RO",call:"कॉल करें",services:"सभी उपकरणों की सर्विस (घर, होटल, दुकान)",tapHint:"किसी सेवा को दबाएँ, बुकिंग फ़ॉर्म खुल जाएगा।",book:"सर्विस बुक करें",nHome:"होम",nServ:"सेवाएँ",nBook:"बुकिंग",nPay:"भुगतान",nShop:"दुकान",nBrands:"ब्रांड्स",brandsT:"हम इन ब्रांड्स की सर्विस करते हैं",brandsHint:"किसी उपकरण को दबाएँ, बुकिंग फ़ॉर्म खुल जाएगा। अन्य ब्रांड की भी सर्विस होती है।",name:"आपका नाम:",phone:"फ़ोन नंबर:",which:"किस उपकरण की सर्विस चाहिए?",otherName:"उपकरण का नाम लिखें:",otherPh:"जैसे: टीवी",brand:"कंपनी / ब्रांड:",otherBrand:"कंपनी का नाम लिखें:",otherBrandPh:"कंपनी का नाम",brandSel:"-- ब्रांड चुनें --",brandOther:"अन्य ब्रांड",brandUnknown:"पता नहीं",photo:"फ़ोटो (वैकल्पिक):",addPhoto:"📷 फ़ोटो जोड़ें",problem:"क्या समस्या है? (चुनें):",problemText:"समस्या लिखकर बताएँ (वैकल्पिक):",problemPh:"जैसे: कल से चालू नहीं हो रहा, आवाज़ आ रही है",wProblem:"समस्या",loc:"लोकेशन (वैकल्पिक):",locBtn:"📍 मेरी लोकेशन जोड़ें",locClear:"हटाएँ",locHint:"दबाने पर आपकी Google Maps लोकेशन WhatsApp संदेश में जुड़ जाएगी।",locWait:"लोकेशन ली जा रही है...",locOk:"लोकेशन जुड़ गई।",locView:"मैप में देखें",locErr:"लोकेशन नहीं मिली। फ़ोन में Location चालू करें और अनुमति दें।",locNo:"इस ब्राउज़र में लोकेशन काम नहीं करती।",wLoc:"लोकेशन (Google Maps)",address:"पता:",addressPh:"आपका पता",sendTo:"किस नंबर पर WhatsApp भेजना है?",submit:"अभी सर्विस बुक करें",waHello:"नमस्ते HALIFA STORES, मुझे उपकरण की सर्विस चाहिए।",wName:"नाम",wPhone:"फ़ोन",wItem:"उपकरण",wBrand:"ब्रांड",wAddr:"पता",wPhotos:"फ़ोटो",wPhotosNote:"मेरे पास फ़ोटो हैं - इसी चैट में भेजूँगा/भेजूँगी",noShare:"इस फ़ोन में फ़ोटो सीधे नहीं भेज सकते। WhatsApp खुलेगा, चैट में फ़ोटो जोड़ें।",payTitle:"भुगतान करें",mUpi:"UPI / QR",mCash:"नकद",mCard:"कार्ड",amt:"राशि (₹) - वैकल्पिक:",scan:"GPay / PhonePe / Paytm से QR स्कैन करें।",copy:"📋 UPI ID कॉपी करें",copied:"✅ कॉपी हो गया",payApp:"📱 UPI ऐप में भुगतान करें",cashNote:"सर्विस के बाद टेक्नीशियन को या दुकान पर नकद दें।",cardNote:"कार्ड से भुगतान केवल दुकान पर उपलब्ध है।"}
 };
-
-T.en.langLbl="Language"; T.ta.langLbl="மொழி";
-Object.assign(T.en,{st1:"1. Details",st2:"2. Send",next:"Next",back:"Back"});Object.assign(T.ta,{st1:"1. விவரங்கள்",st2:"2. அனுப்பு",next:"அடுத்து",back:"பின்"});
-T.hi={st1:"1. विवरण",st2:"2. भेजें",next:"आगे",back:"पीछे",install:"📲 ऐप के रूप में इंस्टॉल करें",installHelp:"Chrome में ऊपर दाईं ओर ⋮ मेनू दबाएँ, फिर 'Install app' या 'Add to Home screen' चुनें।",shop:"हमारी दुकान का पता",mapOpen:"📍 Google Maps में खोलें",mapDir:"🚗 रास्ता देखें",slogan:"आपका भरोसेमंद घरेलू उपकरण सर्विस पार्टनर",tagline:"घरेलू उपकरण बिक्री और सर्विस",items:"गैस स्टोव • मिक्सी • कुकर • आयरन • इंडक्शन स्टोव • पंखा • हीटर",call:"कॉल करें",services:"हमारी सेवाएँ",tapHint:"किसी सेवा को दबाएँ, बुकिंग फ़ॉर्म खुल जाएगा।",book:"सर्विस बुक करें",nHome:"होम",nServ:"सेवाएँ",nBook:"बुकिंग",nPay:"भुगतान",nShop:"दुकान",langLbl:"भाषा",name:"आपका नाम:",phone:"फ़ोन नंबर:",which:"किस उपकरण की सर्विस चाहिए?",otherName:"उपकरण का नाम लिखें:",otherPh:"जैसे: वेट ग्राइंडर",brand:"कंपनी / ब्रांड:",otherBrand:"कंपनी का नाम लिखें:",otherBrandPh:"कंपनी का नाम",brandSel:"-- ब्रांड चुनें --",brandOther:"अन्य ब्रांड",brandUnknown:"पता नहीं",photo:"फ़ोटो (वैकल्पिक):",addPhoto:"📷 फ़ोटो जोड़ें",selAll:"सभी चुनें",deselAll:"सभी हटाएँ",photoHint:"फ़ोटो दबाने पर चुनी / हटाई जाएगी।",problem:"क्या समस्या है? (चुनें):",problemText:"समस्या लिखकर बताएँ (वैकल्पिक):",problemPh:"जैसे: कल से चालू नहीं हो रहा, आवाज़ आ रही है",wProblem:"समस्या",loc:"लोकेशन (वैकल्पिक):",locBtn:"📍 मेरी लोकेशन जोड़ें",locClear:"हटाएँ",locHint:"दबाने पर आपकी Google Maps लोकेशन WhatsApp संदेश में जुड़ जाएगी।",locWait:"लोकेशन ली जा रही है...",locOk:"लोकेशन जुड़ गई।",locView:"मैप में देखें",locErr:"लोकेशन नहीं मिली। फ़ोन में Location चालू करें और अनुमति दें।",locNo:"इस ब्राउज़र में लोकेशन काम नहीं करती।",wLoc:"लोकेशन (Google Maps)",address:"पता:",addressPh:"आपका पता",sendTo:"किस नंबर पर WhatsApp भेजना है?",submit:"अभी सर्विस बुक करें",waHello:"नमस्ते HALIFA STORES, मुझे उपकरण की सर्विस चाहिए।",wName:"नाम",wPhone:"फ़ोन",wItem:"उपकरण",wBrand:"ब्रांड",wAddr:"पता",wPhotos:"फ़ोटो",wPay:"भुगतान का तरीका",wPhotosNote:"मेरे पास फ़ोटो हैं - इसी चैट में भेजूँगा/भेजूँगी",payTitle:"भुगतान करें",payPref:"भुगतान का तरीका:",mUpi:"UPI / QR",mCash:"नकद",mCard:"कार्ड",amt:"राशि (₹) - वैकल्पिक:",scan:"GPay / PhonePe / Paytm से QR स्कैन करें।",copy:"📋 UPI ID कॉपी करें",copied:"✅ कॉपी हो गया",payApp:"📱 UPI ऐप में भुगतान करें",cashNote:"सर्विस के बाद टेक्नीशियन को या दुकान पर नकद दें।",cardNote:"कार्ड से भुगतान केवल दुकान पर उपलब्ध है।",pUpiOpt:"UPI / QR",pCashOpt:"नकद - सर्विस के बाद",pCardOpt:"कार्ड (दुकान पर)"};
-var HI_A={gas:"गैस स्टोव",mixie:"मिक्सर ग्राइंडर",cooker:"कुकर",ind:"इंडक्शन स्टोव",fan:"पंखा",heater:"वॉटर हीटर / गीज़र",iron:"आयरन (इस्त्री)",cyl:"गैस सिलेंडर सर्विस",other:"अन्य"};
-APPLIANCES.forEach(function(a){a.hi=HI_A[a.id]});
-["गैस स्टोव रिपेयर","मिक्सर ग्राइंडर रिपेयर","कुकर सर्विस","आयरन रिपेयर","इंडक्शन स्टोव रिपेयर","पंखा रिपेयर","वॉटर हीटर / गीज़र सर्विस","गैस सिलेंडर संबंधी सर्विस","सभी घरेलू उपकरणों की रिपेयर","स्पेयर पार्ट्स बदलना"].forEach(function(t,i){SERVICES[i].hi=t});
-var PROBS_HI={gas:["बर्नर नहीं जल रहा","लौ धीमी है","गैस की बदबू / लीक","नॉब जाम है","इग्नाइटर काम नहीं कर रहा"],mixie:["मोटर नहीं चल रही","जार लीक हो रहा है","ब्लेड नहीं घूम रहा","ज़्यादा आवाज़","स्विच की समस्या"],cooker:["गैस्केट (रबर) ढीला","भाप लीक हो रही है","सीटी की समस्या","हैंडल टूटा है","ढक्कन जाम है"],ind:["चालू नहीं हो रहा","गरम नहीं हो रहा","एरर कोड दिख रहा है","पंखे की आवाज़","टच काम नहीं कर रहा"],fan:["चल नहीं रहा","धीरे चल रहा है","आवाज़ आ रही है","रेगुलेटर की समस्या","हिल रहा है"],heater:["गरम नहीं हो रहा","पानी टपक रहा है","थर्मोस्टैट की समस्या","MCB ट्रिप हो रहा है","बिजली नहीं आ रही"],iron:["गरम नहीं हो रहा","तापमान नियंत्रित नहीं हो रहा","भाप नहीं आ रही","तार की समस्या","चालू नहीं हो रहा"],cyl:["गैस की बदबू / लीक","रेगुलेटर की समस्या","पाइप / ट्यूब बदलना","सिलेंडर कनेक्शन की समस्या"],other:[]};
-function pTxt(id,i){return lang==="hi"?PROBS_HI[id][i]:PROBS[id][i][lang==="ta"?0:1]}
-var lang="en", files=[], probSel={}, loc=null, payM="upi", qr=null;
+var lang="en",files=[],probSel={},loc=null,payM="upi";
 function tr(k){return T[lang][k]}
-function aName(a){return a[lang]}
+function $(i){return document.getElementById(i)}
 
 function step(n){
-  document.getElementById("s1").classList.toggle("hidden",n!==1);
-  document.getElementById("s2").classList.toggle("hidden",n!==2);
-  document.getElementById("st1").classList.toggle("on",n===1);
-  document.getElementById("st2").classList.toggle("on",n===2);
+  $("s1").classList.toggle("hidden",n!==1);$("s2").classList.toggle("hidden",n!==2);
+  $("st1").classList.toggle("on",n===1);$("st2").classList.toggle("on",n===2);
   window.scrollTo({top:0});
 }
-function nextStep(){
-  var n=document.getElementById("name"),p=document.getElementById("phone");
-  if(!n.reportValidity()||!p.reportValidity()) return;
-  step(2);
-}
+function nextStep(){if(!$("name").reportValidity()||!$("phone").reportValidity())return;step(2)}
 function go(id){
-  if(id==="book"&&!document.getElementById("v-book").classList.contains("on")) step(1);
+  if(id==="book"&&!$("v-book").classList.contains("on"))step(1);
   document.querySelectorAll(".view").forEach(function(v){v.classList.toggle("on",v.id==="v-"+id)});
-  document.querySelectorAll(".nav button").forEach(function(b){b.classList.toggle("on",b.dataset.go===id)});
+  document.querySelectorAll(".nav button,.mi").forEach(function(b){b.classList.toggle("on",b.dataset.go===id)});
   window.scrollTo({top:0});
-  if(id==="pay") drawQR();
+  if(id==="pay")drawQR();
   try{history.replaceState(null,"","#"+id)}catch(e){}
 }
-document.getElementById("nav").addEventListener("click",function(e){
-  var b=e.target.closest("button"); if(b) go(b.dataset.go);
-});
+$("nav").addEventListener("click",function(e){var b=e.target.closest("button");if(b)go(b.dataset.go)});
 
-function toggleLang(){document.getElementById("langMenu").classList.toggle("hidden")}
+/* side menu */
+function menu(o){$("ov").classList.toggle("on",o);$("drawer").classList.toggle("on",o)}
+$("burger").onclick=function(){menu(true)};
+$("ov").onclick=$("dClose").onclick=function(){menu(false)};
+document.addEventListener("keydown",function(e){if(e.key==="Escape")menu(false)});
+$("drawer").addEventListener("click",function(e){var b=e.target.closest(".mi");if(b){go(b.dataset.go);menu(false)}});
+
+/* language */
+function toggleLang(){$("langMenu").classList.toggle("hidden")}
 function setLang(l){
-  lang=l; document.documentElement.lang=l;
+  lang=l;document.documentElement.lang=l;
   document.querySelectorAll("#langMenu button").forEach(function(b){b.classList.toggle("on",b.dataset.l===l)});
-  document.getElementById("langMenu").classList.add("hidden");
-  render();
+  $("langMenu").classList.add("hidden");render();
 }
-document.getElementById("langMenu").addEventListener("click",function(e){var b=e.target.closest("button"); if(b) setLang(b.dataset.l)});
-document.addEventListener("click",function(e){if(!e.target.closest(".lang")) document.getElementById("langMenu").classList.add("hidden")});
+$("langMenu").addEventListener("click",function(e){var b=e.target.closest("button");if(b)setLang(b.dataset.l)});
+document.addEventListener("click",function(e){if(!e.target.closest(".lang"))$("langMenu").classList.add("hidden")});
 
 function render(){
   document.querySelectorAll("[data-i18n]").forEach(function(e){e.textContent=tr(e.dataset.i18n)});
   document.querySelectorAll("[data-ph]").forEach(function(e){e.placeholder=tr(e.dataset.ph)});
-  document.getElementById("services").innerHTML=SERVICES.map(function(x,i){
-    return '<div class="service-card" onclick="pick('+i+')"><h3>'+x.i+' '+x[lang]+'</h3></div>';
+  $("services").innerHTML=SERVICES.map(function(x,i){return '<div class="service-card" onclick="pick('+i+')"><h3>'+x.i+' '+x[lang]+'</h3></div>'}).join("");
+  $("brandList").innerHTML=APPLIANCES.filter(function(a){return a.brands.length}).map(function(a){
+    return '<div class="bcard" onclick="pickApp(\''+a.id+'\')"><h3>'+a.ic+' '+a[lang]+'</h3>'+a.brands.map(function(b){return '<span class="bchip">'+b+'</span>'}).join("")+'</div>';
   }).join("");
-  var sel=document.getElementById("appliance"),cur=sel.value||"gas";
-  sel.innerHTML=APPLIANCES.map(function(a){return '<option value="'+a.id+'">'+aName(a)+'</option>'}).join("");
+  $("hotelList").innerHTML=HOTEL.map(function(x,i){return '<div class="service-card" onclick="pickHotel('+i+')"><h3>'+x.i+' '+x[lang]+'</h3></div>'}).join("");
+  var ct=$("custType");["home","hotel","shop"].forEach(function(v,i){ct.options[i].textContent=tr({home:"cHome",hotel:"cHotel",shop:"cShop"}[v])});
+  var sel=$("appliance"),cur=sel.value||"gas";
+  sel.innerHTML=APPLIANCES.map(function(a){return '<option value="'+a.id+'">'+a[lang]+'</option>'}).join("");
   sel.value=cur;
-  var pmh=[["upi","💳 "+tr("mUpi")],["cash","💵 "+tr("mCash")],["card","🏧 "+tr("mCard")]].map(function(m){
-    return '<button type="button" data-m="'+m[0]+'" class="'+(payM===m[0]?"on":"")+'">'+m[1]+'</button>';
-  }).join("");
-  document.getElementById("pm").innerHTML=pmh; document.getElementById("pm2").innerHTML=pmh;
+  $("pm").innerHTML=[["upi","💳 "+tr("mUpi")],["cash","💵 "+tr("mCash")],["card","🏧 "+tr("mCard")]].map(function(m){
+    return '<button type="button" data-m="'+m[0]+'" class="'+(payM===m[0]?"on":"")+'">'+m[1]+'</button>'}).join("");
   document.querySelectorAll(".cpy").forEach(function(b){b.textContent=tr("copy")});
-  document.getElementById("upiId").textContent=UPI_ID; document.getElementById("upiId2").textContent=UPI_ID;
-  renderBrands(true); renderProblems(); showLoc(); showPay(payM);
-  document.querySelectorAll("[data-wa]").forEach(function(a){
-    a.href="https://wa.me/"+a.dataset.wa+"?text="+encodeURIComponent(tr("waHello"));
-  });
+  $("upiId").textContent=UPI_ID;
+  renderBrands(true);renderProblems();showLoc();showPay(payM);
+  document.querySelectorAll("[data-wa]").forEach(function(a){a.href="https://wa.me/"+a.dataset.wa+"?text="+encodeURIComponent(tr("waHello"))});
 }
+function pickApp(id){$("appliance").value=id;probSel={};renderBrands(false);renderProblems();go("book")}
+function pickHotel(i){pickApp("other");$("otherAppliance").value=HOTEL[i][lang];$("custType").value="hotel"}
+function pick(i){pickApp(SERVICES[i].k);$("custType").value=SERVICES[i].c||"home"}
 
-function pick(i){
-  document.getElementById("appliance").value=SERVICES[i].k;
-  probSel={}; renderBrands(false); renderProblems(); go("book");
-}
-
-/* payments */
+/* payments (Pay tab only) */
 function upiLink(){
-  var a=parseFloat(document.getElementById("amt").value);
+  var a=parseFloat($("amt").value);
   return "upi://pay?pa="+encodeURIComponent(UPI_ID)+"&pn="+encodeURIComponent(UPI_NAME)+"&cu=INR"+(a>0?"&am="+a.toFixed(2):"");
 }
 function drawQR(){
-  [["qr",200],["qr2",150]].forEach(function(q){
-    var box=document.getElementById(q[0]); box.innerHTML="";
-    if(typeof QRCode==="undefined"){box.textContent=UPI_ID; return;}
-    new QRCode(box,{text:upiLink(),width:q[1],height:q[1],colorDark:"#3b1a94",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M});
-  });
+  var box=$("qr");box.innerHTML="";
+  if(typeof QRCode==="undefined"){box.textContent=UPI_ID;return}
+  new QRCode(box,{text:upiLink(),width:200,height:200,colorDark:"#3b1a94",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M});
 }
 function showPay(m){
   payM=m;
-  ["pUpi","bUpi"].forEach(function(id){document.getElementById(id).classList.toggle("hidden",m!=="upi")});
-  document.getElementById("pCash").classList.toggle("hidden",m!=="cash");
-  document.getElementById("pCard").classList.toggle("hidden",m!=="card");
-  var bn=document.getElementById("bNote");
-  bn.classList.toggle("hidden",m==="upi"); bn.textContent=m==="cash"?tr("cashNote"):tr("cardNote");
-  document.querySelectorAll("#pm button,#pm2 button").forEach(function(b){b.classList.toggle("on",b.dataset.m===m)});
-  if(m==="upi") drawQR();
+  $("pUpi").classList.toggle("hidden",m!=="upi");
+  $("pCash").classList.toggle("hidden",m!=="cash");
+  $("pCard").classList.toggle("hidden",m!=="card");
+  document.querySelectorAll("#pm button").forEach(function(b){b.classList.toggle("on",b.dataset.m===m)});
+  if(m==="upi")drawQR();
 }
-["pm","pm2"].forEach(function(id){document.getElementById(id).addEventListener("click",function(e){var b=e.target.closest("button"); if(b) showPay(b.dataset.m)})});
-document.getElementById("amt").addEventListener("input",drawQR);
+$("pm").addEventListener("click",function(e){var b=e.target.closest("button");if(b)showPay(b.dataset.m)});
+$("amt").addEventListener("input",drawQR);
 function openUpi(){location.href=upiLink()}
 function copyUpi(btn){
-  function done(){btn.textContent=tr("copied"); setTimeout(function(){btn.textContent=tr("copy")},1800)}
-  if(navigator.clipboard) navigator.clipboard.writeText(UPI_ID).then(done,function(){});
+  function done(){btn.textContent=tr("copied");setTimeout(function(){btn.textContent=tr("copy")},1800)}
+  if(navigator.clipboard)navigator.clipboard.writeText(UPI_ID).then(done,function(){});
   else{var t=document.createElement("textarea");t.value=UPI_ID;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();done()}
 }
 
 /* booking form */
-function currentAppliance(){
-  var id=document.getElementById("appliance").value;
-  return APPLIANCES.find(function(a){return a.id===id});
-}
+function currentAppliance(){var id=$("appliance").value;return APPLIANCES.find(function(a){return a.id===id})}
 function renderBrands(keep){
-  var a=currentAppliance(),bs=document.getElementById("brand"),prev=keep?bs.value:"";
-  document.getElementById("otherApplianceBox").classList.toggle("hidden",a.id!=="other");
+  var a=currentAppliance(),bs=$("brand"),prev=keep?bs.value:"";
+  $("otherApplianceBox").classList.toggle("hidden",a.id!=="other");
   var o='<option value="">'+tr("brandSel")+'</option>';
   a.brands.forEach(function(b){o+='<option value="'+b+'">'+b+'</option>'});
   o+='<option value="__other">'+tr("brandOther")+'</option><option value="__unknown">'+tr("brandUnknown")+'</option>';
-  bs.innerHTML=o; if(prev) bs.value=prev;
-  document.getElementById("otherBrandBox").classList.toggle("hidden",bs.value!=="__other");
+  bs.innerHTML=o;if(prev)bs.value=prev;
+  $("otherBrandBox").classList.toggle("hidden",bs.value!=="__other");
 }
-document.getElementById("appliance").addEventListener("change",function(){probSel={};renderBrands(false);renderProblems()});
+$("appliance").addEventListener("change",function(){probSel={};renderBrands(false);renderProblems()});
+function pTxt(id,i){return PROBS[id][i][LI[lang]]}
 function renderProblems(){
-  var list=PROBS[document.getElementById("appliance").value]||[];
-  document.getElementById("probBox").classList.toggle("hidden",!list.length);
-  document.getElementById("probChips").innerHTML=list.map(function(p,i){
+  var id=$("appliance").value,list=PROBS[id]||[];
+  $("probBox").classList.toggle("hidden",!list.length);
+  $("probChips").innerHTML=list.map(function(p,i){
     var on=probSel[i];
-    return '<label class="chip'+(on?' on':'')+'"><input type="checkbox" data-i="'+i+'"'+(on?' checked':'')+'>'+pTxt(document.getElementById("appliance").value,i)+'</label>';
+    return '<label class="chip'+(on?' on':'')+'"><input type="checkbox" data-i="'+i+'"'+(on?' checked':'')+'>'+pTxt(id,i)+'</label>';
   }).join("");
 }
-document.getElementById("probChips").addEventListener("change",function(e){
+$("probChips").addEventListener("change",function(e){
   probSel[e.target.dataset.i]=e.target.checked;
   e.target.parentNode.classList.toggle("on",e.target.checked);
 });
-document.getElementById("brand").addEventListener("change",function(){
-  document.getElementById("otherBrandBox").classList.toggle("hidden",this.value!=="__other");
-});
-document.getElementById("photos").addEventListener("change",function(){
+$("brand").addEventListener("change",function(){$("otherBrandBox").classList.toggle("hidden",this.value!=="__other")});
+$("photos").addEventListener("change",function(){
   Array.prototype.forEach.call(this.files,function(f){files.push({file:f,url:URL.createObjectURL(f),selected:true})});
-  this.value=""; drawPreviews();
+  this.value="";drawPreviews();
 });
 function drawPreviews(){
-  var box=document.getElementById("previews"); box.innerHTML="";
+  var box=$("previews");box.innerHTML="";
   files.forEach(function(p){
     var d=document.createElement("div");
     d.className="thumb"+(p.selected?" selected":"");
@@ -473,69 +485,68 @@ function drawPreviews(){
     box.appendChild(d);
   });
 }
-function selectAll(v){files.forEach(function(p){p.selected=v});drawPreviews()}
 function mapUrl(){return "https://www.google.com/maps?q="+loc.lat+","+loc.lng}
 function showLoc(err){
-  var st=document.getElementById("locStatus");
-  document.getElementById("locClear").classList.toggle("hidden",!loc);
-  if(loc) st.innerHTML="✅ "+tr("locOk")+' <a href="'+mapUrl()+'" target="_blank">'+tr("locView")+'</a>';
+  var st=$("locStatus");
+  $("locClear").classList.toggle("hidden",!loc);
+  if(loc)st.innerHTML="✅ "+tr("locOk")+' <a href="'+mapUrl()+'" target="_blank">'+tr("locView")+'</a>';
   else st.textContent=err?tr("locErr"):tr("locHint");
 }
 function getLoc(){
-  var st=document.getElementById("locStatus");
+  var st=$("locStatus");
   if(!navigator.geolocation){st.textContent=tr("locNo");return}
   st.textContent=tr("locWait");
   navigator.geolocation.getCurrentPosition(function(pos){
-    loc={lat:pos.coords.latitude.toFixed(6),lng:pos.coords.longitude.toFixed(6)}; showLoc();
+    loc={lat:pos.coords.latitude.toFixed(6),lng:pos.coords.longitude.toFixed(6)};showLoc();
   },function(){loc=null;showLoc(true)},{enableHighAccuracy:true,timeout:15000});
 }
 function clearLoc(){loc=null;showLoc()}
 
-document.getElementById("bookForm").addEventListener("submit",function(e){
+$("bookForm").addEventListener("submit",function(e){
   e.preventDefault();
   var a=currentAppliance();
-  var item=a.id==="other"?(document.getElementById("otherAppliance").value.trim()||aName(a)):aName(a);
-  var b=document.getElementById("brand").value,brand="";
-  if(b==="__other") brand=document.getElementById("otherBrand").value.trim();
-  else if(b==="__unknown") brand=tr("brandUnknown");
+  var item=a.id==="other"?($("otherAppliance").value.trim()||a[lang]):a[lang];
+  var b=$("brand").value,brand="";
+  if(b==="__other")brand=$("otherBrand").value.trim();
+  else if(b==="__unknown")brand=tr("brandUnknown");
   else brand=b;
-  var n=files.filter(function(p){return p.selected}).length;
-  var lines=[tr("waHello"),"",
-    tr("wName")+": "+document.getElementById("name").value.trim(),
-    tr("wPhone")+": "+document.getElementById("phone").value.trim(),
-    tr("wItem")+": "+item];
-  if(brand) lines.push(tr("wBrand")+": "+brand);
-  var pl=[];(PROBS[a.id]||[]).forEach(function(p,i){if(probSel[i]) pl.push(pTxt(a.id,i))});
-  var pt=document.getElementById("problemText").value.trim();
-  if(pt) pl.push(pt);
-  if(pl.length) lines.push(tr("wProblem")+": "+pl.join(", "));
-  var ad=document.getElementById("address").value.trim();
-  if(ad) lines.push(tr("wAddr")+": "+ad);
-  if(loc) lines.push(tr("wLoc")+": "+mapUrl());
-  lines.push(tr("wPay")+": "+tr({upi:"pUpiOpt",cash:"pCashOpt",card:"pCardOpt"}[payM]));
-  if(n) lines.push(tr("wPhotos")+": "+n+" - "+tr("wPhotosNote"));
-  window.open("https://wa.me/"+document.getElementById("sendTo").value+"?text="+encodeURIComponent(lines.join("\n")),"_blank");
+  var sel=files.filter(function(p){return p.selected}).map(function(p){return p.file});
+  var lines=[tr("waHello"),"",tr("wName")+": "+$("name").value.trim(),tr("wPhone")+": "+$("phone").value.trim(),tr("wItem")+": "+item,tr("wCust")+": "+$("custType").options[$("custType").selectedIndex].textContent];
+  if(brand)lines.push(tr("wBrand")+": "+brand);
+  var pl=[];(PROBS[a.id]||[]).forEach(function(p,i){if(probSel[i])pl.push(pTxt(a.id,i))});
+  var pt=$("problemText").value.trim();
+  if(pt)pl.push(pt);
+  if(pl.length)lines.push(tr("wProblem")+": "+pl.join(", "));
+  var ad=$("address").value.trim();
+  if(ad)lines.push(tr("wAddr")+": "+ad);
+  if(loc)lines.push(tr("wLoc")+": "+mapUrl());
+  if(sel.length)lines.push(tr("wPhotos")+": "+sel.length+" - "+tr("wPhotosNote"));
+  var text=lines.join("\n");
+  var waUrl="https://wa.me/"+$("sendTo").value+"?text="+encodeURIComponent(text);
+  if(sel.length&&navigator.canShare&&navigator.canShare({files:sel})){
+    navigator.share({files:sel,text:text}).catch(function(err){if(err&&err.name!=="AbortError")window.open(waUrl,"_blank")});
+  }else{
+    if(sel.length)alert(tr("noShare"));
+    window.open(waUrl,"_blank");
+  }
 });
 
 /* install */
-var deferredPrompt=null, installBtn=document.getElementById("installBtn");
-if(window.matchMedia("(display-mode: standalone)").matches||window.navigator.standalone) installBtn.classList.add("hidden");
+var deferredPrompt=null,installBtn=$("installBtn");
+if(window.matchMedia("(display-mode: standalone)").matches||window.navigator.standalone)installBtn.classList.add("hidden");
 window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();deferredPrompt=e});
 window.addEventListener("appinstalled",function(){installBtn.classList.add("hidden")});
-installBtn.addEventListener("click",function(){
-  if(deferredPrompt){deferredPrompt.prompt();deferredPrompt=null}else alert(tr("installHelp"));
-});
+installBtn.addEventListener("click",function(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt=null}else alert(tr("installHelp"))});
 if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}
 
 render();
 var h=location.hash.replace("#","");
-if(["home","services","book","pay","shop"].indexOf(h)>-1) go(h);
+if(["home","services","hotel","book","brands","pay","shop"].indexOf(h)>-1)go(h);
 </script>
+
+<!-- App icon + manifest (drawn by the browser, no image files needed) -->
 <script>
 (function(){
-var old=document.querySelector('link[rel="manifest"]');
-if(old) old.remove();
-
 function draw(S){
   var c=document.createElement('canvas');c.width=c.height=S;
   var x=c.getContext('2d');x.scale(S/1024,S/1024);
@@ -564,11 +575,9 @@ function draw(S){
   x.textAlign='center';x.textBaseline='middle';x.fillText('HS',512,630);
   return c.toDataURL('image/png');
 }
-
 var i192=draw(192),i512=draw(512);
 function link(rel,href){var l=document.createElement('link');l.rel=rel;l.href=href;document.head.appendChild(l);return l}
-link('icon',i192);
-link('apple-touch-icon',i192);
+link('icon',i192);link('apple-touch-icon',i192);
 var base=location.origin+location.pathname.replace(/[^\/]*$/,'');
 var m={name:'HALIFA STORES',short_name:'HALIFA',start_url:base,scope:base,display:'standalone',
  background_color:'#0b1f3a',theme_color:'#0b1f3a',
